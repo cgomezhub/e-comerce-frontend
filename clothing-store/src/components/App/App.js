@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,6 +25,7 @@ function App() {
         onLogout={handleLogout}
         userEmail={email}
       />
+      <Navigation />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react"; // Importa useState
 
 import happyHome from "../../images/happy_home.svg";
 import shoppCart from "../../images/shop_cart.svg";
-import settings from "../../images/settings.svg";
+import settings from "../../images/SettingT.svg";
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 
