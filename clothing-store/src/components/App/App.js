@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
+import Products from "../Products/Products";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,6 +27,7 @@ function App() {
         userEmail={email}
       />
       <Navigation />
+      <Products />
     </div>
   );
 }

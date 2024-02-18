@@ -1,0 +1,198 @@
+.products {
+  display: grid;
+  margin: 0% auto;
+  grid-template-columns: repeat(3, 32.5%);
+  grid-template-rows: 1fr;
+  grid-auto-rows: 1fr;
+  grid-gap: 1.5% 1.5%;
+  align-items: start;
+  width: 69%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .products {
+    grid-template-columns: 1fr;
+    row-gap: 0.1%;
+    margin: 5% auto;
+  }
+}
+
+.product {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.product__link {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+}
+
+.product__link:hover {
+  opacity: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .product__link {
+    pointer-events: none;
+    height: 500px;
+  }
+}
+
+.product__stock {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 121%;
+  color: black;
+  background-color: white;
+  width: 90%;
+  padding: 2% 0% 2% 10%;
+  margin: 0%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  border: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .product__stock {
+    font-size: 15px;
+    margin-right: 2%;
+  }
+}
+
+.product__name {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 121%;
+  color: black;
+  background-color: white;
+  width: 90%;
+  padding: 1% 0%;
+  padding-left: 10%;
+  margin: 0%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .product__name {
+    font-size: 25px;
+    margin-right: 2%;
+  }
+}
+
+.product__description {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 121%;
+  color: rgba(74, 72, 72, 0.771);
+  background-color: white;
+  width: 90%;
+  height: 5%;
+  padding: 2% 0%;
+  padding-left: 10%;
+  margin: 0%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .product__description {
+    font-size: 14px;
+    margin-right: 2%;
+  }
+}
+
+.product__buttons {
+  position: relative;
+  padding: 2% 0%;
+  background-color: white;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 30px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.product__like {
+  border: none;
+  background: url(../../images/heart.svg) center no-repeat;
+  cursor: pointer;
+  width: 10%;
+  opacity: 70%;
+  transition: 0.5s;
+}
+
+.product__like:hover {
+  opacity: 100%;
+  transform: scale(1.5);
+}
+
+.product__like_active {
+  opacity: 1;
+  background: url(../../images/Black-heart.png) center no-repeat;
+  background-size: 100%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .product__like {
+    background-size: 55%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .product__like {
+    background-size: 45%;
+  }
+}
+
+.product__cart {
+  border: none;
+  background: url(../../images/empty_shop_cart.svg) center no-repeat;
+  cursor: pointer;
+  width: 14%;
+  transition: 0.5s;
+}
+
+.product__cart:hover {
+  opacity: 100%;
+  transform: scale(1.5);
+}
+
+.product__cart_active {
+  opacity: 1;
+  background: url(../../images/full_shop_cart.svg) center no-repeat;
+  background-size: 100%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .product__cart {
+    background-size: 55%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .product__cart {
+    background-size: 45%;
+  }
+}
