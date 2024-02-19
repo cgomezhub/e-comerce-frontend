@@ -3,6 +3,8 @@ import "./App.css";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Products from "../Products/Products";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,6 +30,8 @@ function App() {
       />
       <Navigation />
       <Products />
+      <RegisterModal />
+      <LoginModal />
     </div>
   );
 }
