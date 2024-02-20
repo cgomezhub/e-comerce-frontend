@@ -1,0 +1,48 @@
+.about {
+  margin: 0 auto;
+  padding: 50px 0;
+  background-color: black;
+  color: #fff;
+  width: 90%;
+}
+
+.about__title {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.about__content {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 80%;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.about__text {
+  margin: 0;
+  padding: 15px;
+  font-size: 18px;
+  text-align: justify;
+}
+
+.about__image {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 400px;
+  object-fit: cover;
+  place-self: center;
+  border-radius: 75%;
+  transition: all 0.3s ease-in-out;
+}
+
+.about__image:hover {
+  transform: scale(1.1);
+  opacity: 70%;
+}

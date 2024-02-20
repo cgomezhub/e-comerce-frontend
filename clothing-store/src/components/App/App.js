@@ -5,6 +5,10 @@ import Navigation from "../Navigation/Navigation";
 import Products from "../Products/Products";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import About from "../About/About";
+import Contact from "../Contact/Contact";
+import Footer from "../Footer/Footer";
+// import Preloader from "../Preloader/Preloader";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,6 +36,9 @@ function App() {
       <Products />
       <RegisterModal />
       <LoginModal />
+      <About />
+      <Contact />
+      <Footer />
     </div>
   );
 }

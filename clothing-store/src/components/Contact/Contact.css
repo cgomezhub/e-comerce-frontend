@@ -1,0 +1,136 @@
+.contact {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-height: 500px;
+  width: 100%;
+}
+
+.contact__wrapper {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 50px 0;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .contact__wrapper {
+    width: 80%;
+  }
+}
+
+.contact__title {
+  margin: 0;
+  padding: 0 0 50px;
+  width: 60%;
+  font-size: 48px;
+  line-height: 1;
+  align-self: flex-end;
+  text-align: center;
+  color: white;
+}
+
+.form {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form__email {
+  margin: 0 0 20px;
+  padding: 0;
+  position: relative;
+  display: flex;
+}
+
+.form__email::before {
+  content: "";
+  position: absolute;
+  top: -182px;
+  left: 0;
+  height: 200px;
+  width: 200px;
+  background-image: url(../../images/message.svg);
+  background-position: bottom;
+  background-size: cover;
+  z-index: 1;
+}
+
+.form__email-icon {
+  margin: 0;
+  padding: 0 10px;
+  display: block;
+  background-color: black;
+  border-radius: 5px 0 0 5px;
+}
+
+.form__email-icon::before {
+  content: "\2709";
+  position: relative;
+  top: 5px;
+  height: 100%;
+  font-size: 50px;
+  color: #fff;
+}
+
+.form__email-input {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 10px;
+  flex: 1;
+  min-height: 50px;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.2;
+  background-color: whitesmoke;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+}
+
+.form__email-input:invalid {
+  border: 1px solid #141d27;
+}
+
+.form__textarea {
+  box-sizing: border-box;
+  margin: 0 0 20px;
+  padding: 15px 10px;
+  height: 250px;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.2;
+  background-color: whitesmoke;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+}
+
+.form__btns {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form__btn {
+  margin: 0;
+  padding: 10px 30px;
+  position: relative;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.2;
+  background-color: #fff;
+  border: 2px solid black;
+  border-radius: 30px;
+  transition: all 0.3s linear;
+}
