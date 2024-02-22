@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 import Header from "../Header/Header";
-import Navigation from "../Navigation/Navigation";
-import Products from "../Products/Products";
+import Main from "../Main/Main";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import About from "../About/About";
-import Contact from "../Contact/Contact";
 import Footer from "../Footer/Footer";
 // import Preloader from "../Preloader/Preloader";
 
@@ -15,13 +12,13 @@ function App() {
 
   const [email, setEmail] = useState(null);
 
-  const [token, setToken] = useState("");
+  // const [token, setToken] = useState(""); se iimplemetara en otra etapa
 
   const handleLogout = () => {
     setEmail(null);
     setIsLoggedIn(false);
     localStorage.clear();
-    setToken("");
+    // setToken("");
     window.location.reload();
   };
 
@@ -32,13 +29,10 @@ function App() {
         onLogout={handleLogout}
         userEmail={email}
       />
-      <Navigation />
-      <Products />
+      <Main />
+      <Footer />
       <RegisterModal />
       <LoginModal />
-      <About />
-      <Contact />
-      <Footer />
     </div>
   );
 }

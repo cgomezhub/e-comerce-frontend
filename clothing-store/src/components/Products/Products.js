@@ -1,10 +1,12 @@
 import "./Products.css";
+import React, { useContext } from "react";
+import { SearchContext } from "../../context/SearchContext";
 // import React, { useContext } from "react";
 
 //import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 const products = [
-  // Array de productos
+  // Array de productos mientras se implementa la conexión con la API
   {
     _id: "1",
     name: "Camiseta",
@@ -13,6 +15,7 @@ const products = [
     attaches: ["1", "2"],
     stock: 10,
     description: "Camiseta negra de algodón",
+    price: 100,
   },
   {
     _id: "2",
@@ -22,6 +25,7 @@ const products = [
     attaches: ["1", "2"],
     stock: 5,
     description: "Pantalón de mezclilla",
+    price: 200,
   },
   {
     _id: "3",
@@ -31,6 +35,7 @@ const products = [
     attaches: ["1", "2"],
     stock: 0,
     description: "Zapatos deportivos blancos",
+    price: 300,
   },
 ];
 
@@ -41,11 +46,16 @@ function Products({
   onProductCart,
 }) {
   // const currentUser = useContext(CurrentUserContext);
+  const { searchTerm } = useContext(SearchContext); // Obtiene el valor de `searchTerm` del contexto
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <section className="products">
       {Array.isArray(products) &&
-        products.map((product, index) => {
+        filteredProducts.map((product, index) => {
           const key = product._id || index; // Si la tarjeta no tiene _id, usa el índice del array
 
           // Verifica si el usuario actual agrego el producto a favoritos
@@ -84,6 +94,9 @@ function Products({
               <p className="product__description">
                 {product.description ? product.description : "Sin descripción"}
               </p>
+              <span className="product__stock">
+                $ {product.stock ? product.price : "NA"}
+              </span>
               <div className="product__buttons">
                 <button
                   className="product__like"

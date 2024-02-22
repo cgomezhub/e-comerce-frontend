@@ -1,5 +1,5 @@
 import "./About.css";
-import HappyHome from "../../images/happy_home.svg";
+import HappyHome from "../../images/happyHome.svg";
 
 function About() {
   return (
