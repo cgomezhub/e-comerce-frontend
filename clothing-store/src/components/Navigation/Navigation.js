@@ -1,10 +1,13 @@
 import "./Navigation.css";
 import React, { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import Profile from "../Profile/Profile";
 import witheHeart from "../../images/heart.svg";
 import lens from "../../images/lens.svg";
 import profile from "../../images/profile.svg";
 import cart from "../../images/shoppCart.svg";
+import pencil from "../../images/pencil.svg";
+import pencilEdit from "../../images/pencilEdit.png";
 
 import { Link } from "react-router-dom";
 
@@ -48,9 +51,7 @@ function Navigation() {
         </form>
       </div>
       <div className="navigation__container">
-        <Link to="/profile">
-          <img src={profile} alt="profile" className="navigation__icon" />
-        </Link>
+        <Profile />
         <Link to="/favorites">
           <img src={witheHeart} alt="favorites" className="navigation__icon" />
         </Link>

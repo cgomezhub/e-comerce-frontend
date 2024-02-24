@@ -4,6 +4,8 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import AvatarEditModal from "../AvatarEditModal/AvatarEditModal";
 import Footer from "../Footer/Footer";
 // import Preloader from "../Preloader/Preloader";
 
@@ -33,6 +35,8 @@ function App() {
       <Footer />
       <RegisterModal />
       <LoginModal />
+      <EditProfileModal />
+      <AvatarEditModal />
     </div>
   );
 }

@@ -25,6 +25,7 @@
   padding: 10px 10px;
   border-radius: 50px;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .navigation__pes:hover {
@@ -35,7 +36,7 @@
 }
 
 .navigation__icon {
-  margin: 0 10px;
+  margin: 0;
 }
 
 .navigation__icon:hover {
