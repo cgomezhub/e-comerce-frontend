@@ -17,14 +17,14 @@
   font-size: 18px;
   font-weight: 400;
   width: 60%;
-  margin: 0 auto 2%;
+  margin: 0 auto 5%;
   color: white;
-  background-color: rgb(215, 206, 37);
+  background-color: blue;
   cursor: pointer;
   display: flex;
   justify-content: center;
   padding: 10px 10px;
-  border-radius: 50px;
+  border-radius: 10px;
   box-sizing: border-box;
   white-space: nowrap;
 }

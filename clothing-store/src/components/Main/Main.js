@@ -6,6 +6,7 @@ import About from "../About/About";
 import Contact from "../Contact/Contact";
 import Favorites from "../Favorites/Favorites";
 import ImageModal from "../ImageModal/ImageModal";
+import ShoppingCart from "../ShoopingCart/ShoppingCart";
 import { SearchContext } from "../../context/SearchContext";
 
 // import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -26,6 +27,7 @@ function Main() {
       <About />
       <Contact />
       <Favorites />
+      <ShoppingCart />
       <ImageModal />
     </main>
   );
