@@ -1,5 +1,5 @@
 import "./Checkout.css";
-import trash from "../../images/trash.svg";
+import close from "../../images/closeX.svg";
 import React, { useState } from "react";
 
 const shoppingProducts = [
@@ -195,7 +195,7 @@ export default function Checkout({
                           </span>
                         </div>
                         <img
-                          src={trash}
+                          src={close}
                           alt="erase"
                           className="item__erase"
                           onClick={() => {

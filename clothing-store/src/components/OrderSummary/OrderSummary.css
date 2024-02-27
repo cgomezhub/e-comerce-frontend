@@ -1,0 +1,13 @@
+.checkout__container-surtitle {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 5% auto 1% 5%;
+  color: blue;
+}
+
+.checkout__container-subtitle {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 1% auto 5% 5%;
+  color: rgb(0, 0, 0, 0.6);
+}

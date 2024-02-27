@@ -8,6 +8,7 @@ import Favorites from "../Favorites/Favorites";
 import ImageModal from "../ImageModal/ImageModal";
 import ShoppingCart from "../ShoopingCart/ShoppingCart";
 import Checkout from "../Checkout/Checkout";
+import OrderSummary from "../OrderSummary/OrderSummary";
 import { SearchContext } from "../../context/SearchContext";
 
 // import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -30,6 +31,7 @@ function Main() {
       <Favorites />
       <ShoppingCart />
       <Checkout />
+      <OrderSummary />
       <ImageModal />
     </main>
   );
