@@ -135,7 +135,7 @@ export default function ShoppingCart({
             </li>
           </ul>
           <span className="shopping-cart__container-summary-checkout">
-            proceder al pago
+            Proceder al pago
           </span>
         </section>
       </form>
