@@ -20,7 +20,7 @@ function Contact() {
             className="form__textarea"
             name="message"
             placeholder="Escribe tu mensaje aquí..."
-            minlength="5"
+            minLength="5"
             required=""
           ></textarea>
           <div className="form__btns">

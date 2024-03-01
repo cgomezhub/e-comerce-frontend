@@ -4,14 +4,11 @@ import { SearchContext } from "../../context/SearchContext";
 import Profile from "../Profile/Profile";
 import witheHeart from "../../images/heart.svg";
 import lens from "../../images/lens.svg";
-import profile from "../../images/profile.svg";
 import cart from "../../images/shoppCart.svg";
-import pencil from "../../images/pencil.svg";
-import pencilEdit from "../../images/pencilEdit.png";
 
 import { Link } from "react-router-dom";
 
-function Navigation() {
+function Navigation({ onEditProfileClick, onEditAvatarClick }) {
   const { setSearchTerm } = useContext(SearchContext);
   const [inputValue, setInputValue] = useState("");
 
@@ -31,10 +28,10 @@ function Navigation() {
           <span className="navigation__pes">Productos</span>
         </Link>
         <Link to="/contact-us">
-          <span className="navigation__pes">Acerca HH</span>
-        </Link>
-        <Link to="/about-me">
           <span className="navigation__pes">Contactanos</span>
+        </Link>
+        <Link to="/about-us">
+          <span className="navigation__pes">Nosotros</span>
         </Link>
       </div>
       <div className="navigation__search-bar">
@@ -50,15 +47,14 @@ function Navigation() {
           </button>
         </form>
       </div>
-      <div className="navigation__container">
-        <Profile />
-        <Link to="/favorites">
-          <img src={witheHeart} alt="favorites" className="navigation__icon" />
-        </Link>
+      <div className="navigation__buttons">
+        <Profile
+          onEditProfileClick={onEditProfileClick}
+          onEditAvatarClick={onEditAvatarClick}
+        />
+        <img src={witheHeart} alt="favorites" className="navigation__icon" />
         <span className="navigation__count">{0}</span>
-        <Link to="/cart">
-          <img src={cart} alt="Cart" className="navigation__icon" />
-        </Link>
+        <img src={cart} alt="Cart" className="navigation__icon" />
         <span className="navigation__count">{0}</span>
       </div>
     </nav>

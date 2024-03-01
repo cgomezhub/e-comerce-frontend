@@ -1,12 +1,17 @@
-import React, { useState } from "react"; // Importa useState
+import React, { useState, Route, Routes } from "react"; // Importa useState
 
 import happyHome from "../../images/happyHome.svg";
-import shoppCart from "../../images/shop_cart.svg";
-import settings from "../../images/SettingT.svg";
+
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 
-function Header({ isLoggedIn, onLogout, userEmail }) {
+function Header({
+  isLoggedIn,
+  onLogout,
+  userEmail,
+  onLoginClick,
+  onRegisterClick,
+}) {
   const location = useLocation();
 
   const handleLogout = (event) => {
@@ -32,16 +37,18 @@ function Header({ isLoggedIn, onLogout, userEmail }) {
 
   return (
     <header className="header">
-      <img src={happyHome} alt="Happy Home" className="header__logo" />
+      <Link to="/">
+        <img src={happyHome} alt="Happy Home" className="header__logo" />
+      </Link>
       <div>
         {location.pathname === "/signin" ? (
-          <Link to="/signup">
-            <button className="header__close">Regístrate</button>
-          </Link>
+          <button className="header__close" onClick={onRegisterClick}>
+            Regístrate
+          </button>
         ) : (
-          <Link to="/signin">
-            <button className="header__close">Iniciar sesión</button>
-          </Link>
+          <button className="header__close" onClick={onLoginClick}>
+            Iniciar sesión
+          </button>
         )}
       </div>
     </header>

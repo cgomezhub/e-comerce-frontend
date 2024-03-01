@@ -1,15 +1,15 @@
 .contact {
   box-sizing: border-box;
-  margin: 0;
+  margin: 5% auto;
   padding: 0;
   min-height: 500px;
-  width: 100%;
+  width: 69%;
 }
 
 .contact__wrapper {
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

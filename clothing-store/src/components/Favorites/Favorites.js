@@ -42,8 +42,8 @@ export default function Favorites({
   onProductCart,
 }) {
   return (
-    <div>
-      <p className="favorites">Lista de favoritos</p>
+    <div className="favorites">
+      <p className="favorites__title">Lista de favoritos</p>
       <section className="products">
         {Array.isArray(favoriteProducts) &&
           favoriteProducts.map((product, index) => {

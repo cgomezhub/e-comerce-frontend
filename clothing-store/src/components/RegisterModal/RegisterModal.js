@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { Link } from "react-router-dom";
 import "./RegisterModal.css";
 
-function RegisterModal({ isOpen, onClose, onRegisterSubmit }) {
+function RegisterModal({ isOpen, onClose, onRegisterSubmit, onLoginClick }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -95,9 +95,15 @@ function RegisterModal({ isOpen, onClose, onRegisterSubmit }) {
           Inscribirse
         </button>
         <span className="modal__form-option"> o </span>
-        <Link to="/signin">
-          <span className="modal__form-login">Iniciar Sesión</span>
-        </Link>
+        <span
+          className="modal__form-login"
+          onClick={() => {
+            onClose();
+            onLoginClick();
+          }}
+        >
+          Iniciar Sesión
+        </span>{" "}
       </div>
     </ModalWithForm>
   );

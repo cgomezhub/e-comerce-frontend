@@ -5,6 +5,11 @@
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (max-width: 768px) {
+  .profile {
+    margin: 2%;
+  }
+}
 
 .profile__container-image {
   align-items: center;

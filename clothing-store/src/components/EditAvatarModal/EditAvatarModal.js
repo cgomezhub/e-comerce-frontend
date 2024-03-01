@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./AvatarEditModal.css";
+import "./EditAvatarModal.css";
 import profilAvatar from "../../images/avatar.svg";
 //import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function AvatarEditModal({ isOpen, onClose, onUpdateUser }) {
+function EditAvatarModal({ isOpen, onClose, onUpdateUser }) {
   const [avatar, setAvatar] = useState("");
 
   function handleNameChange(e) {
@@ -41,7 +41,7 @@ function AvatarEditModal({ isOpen, onClose, onUpdateUser }) {
 
       <input
         id="user-name"
-        type="name"
+        type="url"
         value={avatar}
         onChange={handleNameChange}
         className="modal__form-input"
@@ -57,4 +57,4 @@ function AvatarEditModal({ isOpen, onClose, onUpdateUser }) {
     </ModalWithForm>
   );
 }
-export default AvatarEditModal;
+export default EditAvatarModal;

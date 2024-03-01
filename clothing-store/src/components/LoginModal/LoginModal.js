@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { Link } from "react-router-dom";
 import "./LoginModal.css";
 
-function LoginModal({ isOpen, onClose, onLoginSubmit }) {
+function LoginModal({ isOpen, onClose, onLoginSubmit, onRegisterClick }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -59,9 +58,15 @@ function LoginModal({ isOpen, onClose, onLoginSubmit }) {
           Ingresar
         </button>
         <span className="modal__form-option"> o </span>
-        <Link to="/signup">
-          <span className="modal__form-login">Inscribirse</span>
-        </Link>
+        <span
+          className="modal__form-login"
+          onClick={() => {
+            onClose();
+            onRegisterClick();
+          }}
+        >
+          Inscribirse
+        </span>
       </div>
     </ModalWithForm>
   );

@@ -3,7 +3,7 @@ import profile from "../../images/profile.svg";
 import pencil from "../../images/pencil.svg";
 import pencilEdit from "../../images/pencilEdit.png";
 
-function Profile() {
+function Profile({ onEditProfileClick, onEditAvatarClick }) {
   // const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -14,6 +14,7 @@ function Profile() {
           src={pencil}
           alt="Pencil de editar"
           className="profile__avatar-edit"
+          onClick={onEditAvatarClick}
         />
       </div>
       <div className="profile__container">
@@ -22,6 +23,7 @@ function Profile() {
           src={pencilEdit}
           alt="Pencil de editar"
           className="profile__name-edit"
+          onClick={onEditProfileClick}
         />
       </div>
     </section>

@@ -1,5 +1,6 @@
 import "./About.css";
 import HappyHome from "../../images/happyHome.svg";
+import { Link } from "react-router-dom";
 
 function About() {
   return (
@@ -28,7 +29,11 @@ function About() {
             Happy Home, donde la moda se encuentra contigo!
           </p>
         </div>
-        <img className="about__image" src={HappyHome} alt="HappyHome"></img>
+        <div className="about__image">
+          <Link to="/">
+            <img className="about__image" src={HappyHome} alt="HappyHome"></img>
+          </Link>
+        </div>
       </div>
     </section>
   );
