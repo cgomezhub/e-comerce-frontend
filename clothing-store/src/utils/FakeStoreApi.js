@@ -22,21 +22,11 @@ class Api {
   }
 }
 
-const api = new Api({
+const apiProducts = new Api({
   address: "https://fakestoreapi.com/products",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-/*
-const api = new Api({
-  address: "https://api.jsonbin.io/v3/b/65df8e97266cfc3fde90b900",
-  headers: {
-    "X-Master-Key":
-      "$2a$10$zcDLAP9dOXIBeB5IMxyWge3c9wUS3mSCzglmcnkUROKztDUq3sNs.",
-    "Content-Type": "application/json",
-  },
-});
-*/
-export default api;
+export default apiProducts;

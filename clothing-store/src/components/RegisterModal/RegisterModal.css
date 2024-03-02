@@ -27,7 +27,12 @@
   }
 }
 
+.modal__form-error {
+  visibility: hidden;
+}
+
 .modal__form-error_active {
+  visibility: visible;
   font-family: "Inter", Arial, sans-serif;
   font-size: 18px;
   line-height: 121%;
@@ -67,10 +72,16 @@
   text-decoration: none;
   border-radius: 50px;
   border: none;
+  cursor: pointer;
 }
 
 .modal__form-register:hover {
   opacity: 80%;
+}
+
+.modal__form-register.disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
 }
 
 .modal__form-option {
@@ -87,4 +98,5 @@
   font-weight: 500;
   color: #8cace5;
   text-decoration: none;
+  cursor: pointer;
 }

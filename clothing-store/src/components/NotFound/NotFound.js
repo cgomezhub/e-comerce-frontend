@@ -1,5 +1,5 @@
 import React from "react";
-import "./Preloader.css";
+import "./NotFound.css";
 
 const NotFound = () => {
   return (

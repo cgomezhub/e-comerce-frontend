@@ -17,8 +17,8 @@
 }
 
 .profile__avatar {
-  width: 120px;
-  height: 120px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 }
 
@@ -34,20 +34,6 @@
 
 .profile__avatar:hover + .profile__avatar-edit {
   opacity: 0.5;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1280px) {
-  .profile__avatar {
-    width: 90px;
-    height: 90px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .profile__avatar {
-    width: 180px;
-    height: 180px;
-  }
 }
 
 .profile__avatar-edit {
@@ -91,16 +77,4 @@
   color: white;
   margin: 0 2% 0 4%;
   width: 55%;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1280px) {
-  .profile__name {
-    font-size: 18px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .profile__name {
-    font-size: 18px;
-  }
 }

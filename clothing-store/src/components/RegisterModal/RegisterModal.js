@@ -1,31 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { Link } from "react-router-dom";
 import "./RegisterModal.css";
 
 function RegisterModal({ isOpen, onClose, onRegisterSubmit, onLoginClick }) {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [passwordsMatch, setPasswordsMatch] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // Nuevo estado para el mensaje de error
+  const [formValid, setFormValid] = useState(false);
 
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
+  useEffect(() => {
+    // El formulario es válido si las contraseñas coinciden y todos los campos están llenos
+    setFormValid(
+      passwordsMatch && email !== "" && password !== "" && rePassword !== ""
+    );
+  }, [email, password, rePassword, passwordsMatch]);
+
   function handleEmailChange(e) {
     setEmail(e.target.value);
   }
   function handlePasswordChange(e) {
     setPassword(e.target.value);
+    checkPasswordsMatch(e.target.value, rePassword);
   }
+
   function handleRePasswordChange(e) {
     setRePassword(e.target.value);
+    checkPasswordsMatch(password, e.target.value);
   }
+
+  const checkPasswordsMatch = (password, rePassword) => {
+    const match = password === rePassword;
+    setPasswordsMatch(match);
+    setErrorMessage(match ? "" : "Las contraseñas no coinciden"); // Establece el mensaje de error
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const user = { name, email, password };
+    const user = { email, password };
 
     onRegisterSubmit(user);
   };
@@ -39,18 +53,6 @@ function RegisterModal({ isOpen, onClose, onRegisterSubmit, onLoginClick }) {
       onSubmit={handleSubmit}
     >
       <input
-        id="register-name"
-        className="modal__form-input"
-        type="text"
-        value={name}
-        onChange={handleNameChange}
-        placeholder="Nombre de usuario"
-        minLength="2"
-        maxLength="40"
-        required
-      />
-      <span className="modal__form-error"></span>
-      <input
         id="register-email"
         type="email"
         value={email}
@@ -61,7 +63,6 @@ function RegisterModal({ isOpen, onClose, onRegisterSubmit, onLoginClick }) {
         maxLength="200"
         required
       />
-      <span className="modal__form-error"></span>
       <input
         id="register-password"
         type="password"
@@ -69,11 +70,10 @@ function RegisterModal({ isOpen, onClose, onRegisterSubmit, onLoginClick }) {
         onChange={handlePasswordChange}
         className="modal__form-input"
         placeholder="Contraseña"
-        minLength="2"
-        maxLength="200"
+        minLength="8"
+        maxLength="50"
         required
       />
-      <span className="modal__form-error"></span>
       <input
         id="register-repassword"
         type="password"
@@ -81,16 +81,23 @@ function RegisterModal({ isOpen, onClose, onRegisterSubmit, onLoginClick }) {
         onChange={handleRePasswordChange}
         className="modal__form-input"
         placeholder="Vuelva a introducir la contraseña"
-        minLength="2"
-        maxLength="200"
+        minLength="8"
+        maxLength="50"
         required
       />
-      <span className="modal__form-error"></span>
+      <span
+        className={`modal__form-error ${
+          isOpen ? "modal__form-error_active" : ""
+        }`}
+      >
+        {errorMessage}
+      </span>
       <div className="modal__form-buttons">
         <button
           id="user-register"
           type="submit"
-          className="modal__form-register"
+          className={`modal__form-register ${!formValid ? "disabled" : ""}`}
+          disabled={!formValid}
         >
           Inscribirse
         </button>

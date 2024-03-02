@@ -8,8 +8,8 @@
 @media screen and (max-width: 768px) {
   .navigation {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 45% 55%;
+    grid-auto-rows: 1fr;
   }
 }
 
@@ -18,6 +18,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 40%;
 }
 
 .navigation__pes {
@@ -29,10 +30,17 @@
   align-items: center;
   transition: color 0.3s ease, background-color 0.3s ease,
     border-radius 0.3s ease, padding 0.3s ease;
-  padding: 10px 10px;
+  padding: 5px 5px;
   border-radius: 50px;
   box-sizing: border-box;
   white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__pes {
+    padding: 2px;
+    font-size: 15px;
+  }
 }
 
 .navigation__pes:hover {
@@ -57,21 +65,37 @@
 }
 
 .navigation__search-bar {
+  align-items: center;
+  width: 25%;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__search-bar {
+    width: 80%;
+    margin: auto 0 auto auto;
+  }
+}
+
+.navigation__form {
+  align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
   align-items: center;
 }
 
-.navigation__search-bar form {
-  display: flex;
-  align-items: center;
-}
-
-.navigation__search-bar input {
-  padding: 10px;
-  width: 200px;
+.navigation__input {
+  padding: 5px;
+  width: 80%;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__input {
+    width: 70%;
+  }
 }
 
 .navigation__search-bar button {
@@ -82,7 +106,7 @@
 
 @media screen and (max-width: 768px) {
   .navigation__search-bar button {
-    margin-left: 10%;
+    margin-left: 0;
   }
 }
 

@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
 function LoginModal({ isOpen, onClose, onLoginSubmit, onRegisterClick }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isFormValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    validateForm();
+  }, [email, password]);
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -12,6 +17,10 @@ function LoginModal({ isOpen, onClose, onLoginSubmit, onRegisterClick }) {
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
+
+  const validateForm = () => {
+    setFormValid(email !== "" && password !== "");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,13 +57,19 @@ function LoginModal({ isOpen, onClose, onLoginSubmit, onRegisterClick }) {
         onChange={handlePasswordChange}
         className="modal__form-input"
         placeholder="Contraseña"
-        minLength="2"
+        minLength="8"
         maxLength="200"
         required
       />
       <span className="modal__form-error"></span>
       <div className="modal__form-buttons">
-        <button id="user-login" type="submit" className="modal__form-register">
+        <button
+          id="user-login"
+          type="submit"
+          className="modal__form-register"
+          disabled={!isFormValid}
+          style={{ backgroundColor: isFormValid ? "#8cace5" : "darkgray" }}
+        >
           Ingresar
         </button>
         <span className="modal__form-option"> o </span>

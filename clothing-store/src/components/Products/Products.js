@@ -1,6 +1,6 @@
 import "./Products.css";
 import React, { useContext, useState } from "react";
-import { SearchContext } from "../../context/SearchContext";
+import { SearchContext } from "../../contexts/SearchContext";
 // import React, { useContext } from "react";
 
 //import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -11,6 +11,7 @@ function Products({
   onProductLinkClick,
   onProductCart,
   products,
+  isLoading,
 }) {
   // const currentUser = useContext(CurrentUserContext);
   const { searchTerm } = useContext(SearchContext); // Obtiene el valor de `searchTerm` del contexto
@@ -26,6 +27,10 @@ function Products({
   const handleShowMore = () => {
     setNumToShow((prevNumToShow) => prevNumToShow + 3); // Aumenta el número de productos a mostrar
   };
+
+  if (isLoading) {
+    return <i class="circle-preloader"></i>; // Render preloader if data is loading
+  }
 
   return (
     <div>
@@ -58,10 +63,6 @@ function Products({
                   className="product__image"
                   src={product.image}
                   alt={`imagen de ${product.titte}`}
-                  onClick={() => {
-                    onSelectedProduct(product);
-                    onProductLinkClick(product);
-                  }}
                 />
                 {/*<span className="product__stock">
                 Stock: {product.stock ? product.stock : "Agotado"}

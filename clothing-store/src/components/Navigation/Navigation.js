@@ -1,6 +1,6 @@
 import "./Navigation.css";
 import React, { useContext, useState } from "react";
-import { SearchContext } from "../../context/SearchContext";
+import { SearchContext } from "../../contexts/SearchContext";
 import Profile from "../Profile/Profile";
 import witheHeart from "../../images/heart.svg";
 import lens from "../../images/lens.svg";
@@ -35,12 +35,13 @@ function Navigation({ onEditProfileClick, onEditAvatarClick }) {
         </Link>
       </div>
       <div className="navigation__search-bar">
-        <form onSubmit={handleSearch}>
+        <form onSubmit={handleSearch} className="navigation__form">
           <input
             type="text"
             placeholder="Buscar producto..."
             value={inputValue}
             onChange={handleInputChange}
+            className="navigation__input"
           />
           <button type="submit">
             <img src={lens} alt="Buscar" />

@@ -17,6 +17,7 @@ function ModalWithForm({ title, name, children, isOpen, onClose, onSubmit }) {
       window.removeEventListener("keydown", handleEscClose);
     };
   }, [isOpen, onClose]);
+
   return (
     <section className={`modal ${isOpen ? "modal_is-opened" : ""}`}>
       <form id={name} className="modal__form" onSubmit={onSubmit}>

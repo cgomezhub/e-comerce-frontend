@@ -2,14 +2,20 @@ import "./Profile.css";
 import profile from "../../images/profile.svg";
 import pencil from "../../images/pencil.svg";
 import pencilEdit from "../../images/pencilEdit.png";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile({ onEditProfileClick, onEditAvatarClick }) {
-  // const currentUser = useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <section className="profile">
       <div className="profile__container-image">
-        <img src={profile} alt="profile" className="navigation__icon" />
+        <img
+          className="profile__avatar"
+          alt="profile"
+          src={currentUser.avatar ? currentUser.avatar : profile}
+        />
         <img
           src={pencil}
           alt="Pencil de editar"
@@ -18,7 +24,7 @@ function Profile({ onEditProfileClick, onEditAvatarClick }) {
         />
       </div>
       <div className="profile__container">
-        <span className="profile__name">Hola Carlos</span>
+        <span className="profile__name">Hola {currentUser.name}</span>
         <img
           src={pencilEdit}
           alt="Pencil de editar"
