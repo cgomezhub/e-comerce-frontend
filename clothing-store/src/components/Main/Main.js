@@ -8,12 +8,13 @@ import { SearchContext } from "../../contexts/SearchContext";
 
 // import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main({ products, onEditProfileClick, onEditAvatarClick, isLoading }) {
-  /* const currentUser = useContext(CurrentUserContext);
-  if (!currentUser) {
-    return <div>Loading...</div>; //
-  } */
-
+function Main({
+  products,
+  onEditProfileClick,
+  onEditAvatarClick,
+  isLoading,
+  isLoggedIn,
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <main className="container">
@@ -21,6 +22,7 @@ function Main({ products, onEditProfileClick, onEditAvatarClick, isLoading }) {
         <Navigation
           onEditProfileClick={onEditProfileClick}
           onEditAvatarClick={onEditAvatarClick}
+          isLoggedIn={isLoggedIn}
         />
         <Outlet />
         <Products products={products} isLoading={isLoading} />

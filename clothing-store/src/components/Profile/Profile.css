@@ -20,6 +20,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  margin: 0 a;
 }
 
 .profile__avatar:hover {
@@ -74,7 +75,9 @@
 .profile__name {
   font-size: 15px;
   line-height: 133%;
-  color: white;
+  color: blue;
   margin: 0 2% 0 4%;
   width: 55%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

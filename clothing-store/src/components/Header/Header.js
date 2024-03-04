@@ -1,5 +1,3 @@
-import React, { useState, Route, Routes } from "react"; // Importa useState
-
 import happyHome from "../../images/happyHome.svg";
 
 import "./Header.css";
@@ -25,11 +23,9 @@ function Header({
         <img src={happyHome} alt="Happy Home" className="header__logo" />
         <div className="header__container">
           <p className="header__email">{userEmail}</p>
-          <Link to="/signin">
-            <button onClick={handleLogout} className="header__close">
-              Cerrar sesión
-            </button>
-          </Link>
+          <button onClick={handleLogout} className="header__close">
+            Cerrar sesión
+          </button>
         </div>
       </header>
     );
@@ -41,7 +37,7 @@ function Header({
         <img src={happyHome} alt="Happy Home" className="header__logo" />
       </Link>
       <div>
-        {location.pathname === "/signin" ? (
+        {location.pathname === "/" ? (
           <button className="header__close" onClick={onRegisterClick}>
             Regístrate
           </button>

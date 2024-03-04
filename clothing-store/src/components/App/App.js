@@ -11,14 +11,14 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import AvatarEditModal from "../EditAvatarModal/EditAvatarModal";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 import InfoTooltipFail from "../InfoTooltipfail/InfoTooltipFail";
+import NotFound from "../NotFound/NotFound";
 import Footer from "../Footer/Footer";
 
 import apiProducts from "../../utils/FakeStoreApi";
 import { api, apiAuth } from "../../utils/AroundApi";
+import { apiMail } from "../../utils/MailSenderApi";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-
-// import Preloader from "../Preloader/Preloader";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -56,7 +56,6 @@ function App() {
     apiProducts
       .getProductList()
       .then((data) => {
-        console.log(data);
         setIsLoading(false);
         setProducts(data);
       })
@@ -116,7 +115,6 @@ function App() {
           localStorage.clear();
           //console.log(data.token);
           localStorage.setItem("token", data.token);
-          //console.log(localStorage.getItem("token"));
           // console.log(token);
           setIsLoginModalOpen(false);
           handleUser();
@@ -142,8 +140,6 @@ function App() {
       .getUser()
       .then((response) => {
         if (response) {
-          // maneja la respuesta del servidor aquí
-          // agregar el email al encabezado
           // console.log(response);
           setEmail(response.data.email);
           setCurrentUser(response.data);
@@ -164,17 +160,55 @@ function App() {
       if (token) {
         handleUser();
         setIsLoggedIn(true);
-        navigate("/");
       }
     };
     checkToken();
   }, [navigate, token]);
 
+  const handleUpdateUser = (userData) => {
+    api
+      .userProfileUpdate(userData)
+      .then((response) => {
+        setCurrentUser(response.data);
+        closeAllModals();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleUpdateAvatar = (userData) => {
+    if (!userData || !userData.avatar) {
+      console.error("userData is undefined or does not have a name property");
+      return;
+    }
+    api
+      .userAvatarUpdate(userData)
+      .then((updateAvatarData) => {
+        setCurrentUser(updateAvatarData);
+        closeAllModals();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleSendEmail = (info) => {
+    apiMail
+      .sendEmail(info)
+      .then((response) => {
+        alert("Email sent successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Error sending email");
+      });
+  };
+
   const handleLogout = () => {
     setEmail(null);
     setIsLoggedIn(false);
     localStorage.clear();
-    // setToken("");
     window.location.reload();
   };
 
@@ -197,23 +231,21 @@ function App() {
                 onEditProfileClick={handleEditProfileClick}
                 onEditAvatarClick={handleEditAvatarClick}
                 isLoading={isLoading}
+                isLoggedIn={isLoggedIn}
               />
             }
           >
             <Route path="about-us" element={<About />} />
-            <Route path="/contact-us" element={<Contact />} />
+            <Route
+              path="contact-us"
+              element={
+                <Contact onSendEmail={handleSendEmail} isLoading={isLoading} />
+              }
+            />
           </Route>
-          <Route
-            path="/products"
-            element={
-              <Main
-                products={products}
-                onEditProfileClick={handleEditProfileClick}
-                onEditAvatarClick={handleEditAvatarClick}
-                isLoading={isLoading}
-              />
-            }
-          />
+          <Route>
+            <Route path="/*" element={<NotFound />} />
+          </Route>
         </Routes>
         <Footer />
         <RegisterModal
@@ -231,10 +263,12 @@ function App() {
         <EditProfileModal
           isOpen={isEditProfileModalOpen}
           onClose={closeAllModals}
+          onUpdateUser={handleUpdateUser}
         />
         <AvatarEditModal
           isOpen={isEditAvatarModalOpen}
           onClose={closeAllModals}
+          onUpdateAvatar={handleUpdateAvatar}
         />
         <InfoTooltip
           isOpen={isInfoTooltipOpen}

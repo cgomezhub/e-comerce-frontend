@@ -29,7 +29,7 @@ function Products({
   };
 
   if (isLoading) {
-    return <i class="circle-preloader"></i>; // Render preloader if data is loading
+    return <i className="circle-preloader"></i>; // Render preloader if data is loading
   }
 
   return (
@@ -64,9 +64,6 @@ function Products({
                   src={product.image}
                   alt={`imagen de ${product.titte}`}
                 />
-                {/*<span className="product__stock">
-                Stock: {product.stock ? product.stock : "Agotado"}
-              </span>*/}
                 <p className="product__title">{product.title}</p>
                 <p className="product__subtitle">
                   {product.description

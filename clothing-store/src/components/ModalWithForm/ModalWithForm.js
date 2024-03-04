@@ -18,8 +18,17 @@ function ModalWithForm({ title, name, children, isOpen, onClose, onSubmit }) {
     };
   }, [isOpen, onClose]);
 
+  const handleCloseModalClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <section className={`modal ${isOpen ? "modal_is-opened" : ""}`}>
+    <section
+      className={`modal ${isOpen ? "modal_is-opened" : ""}`}
+      onClick={handleCloseModalClick}
+    >
       <form id={name} className="modal__form" onSubmit={onSubmit}>
         <div className="modal__form-container">
           <h2 className="modal__form-title">{title}</h2>

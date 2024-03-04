@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+
 import "./EditProfileModal.css";
-//import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function EditProfileModal({
   isOpen,
@@ -11,11 +12,13 @@ function EditProfileModal({
 }) {
   const [name, setName] = useState("");
 
+  const about = "usuario de la tienda";
+
   function handleNameChange(e) {
     setName(e.target.value);
   }
-  /*
-  const currentUser = useContext(CurrentUserContext); // suscribe to the context
+
+  const currentUser = useContext(CurrentUserContext);
 
   React.useEffect(() => {
     if (currentUser && currentUser.name && currentUser.about) {
@@ -23,12 +26,10 @@ function EditProfileModal({
     }
   }, [currentUser]);
 
-  */
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const user = { name };
+    const user = { name, about };
 
     onUpdateUser(user);
   };

@@ -1,32 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./EditAvatarModal.css";
 import profilAvatar from "../../images/avatar.svg";
-//import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function EditAvatarModal({ isOpen, onClose, onUpdateUser }) {
+function EditAvatarModal({ isOpen, onClose, onUpdateAvatar }) {
   const [avatar, setAvatar] = useState("");
 
-  function handleNameChange(e) {
+  function handleAvatarChange(e) {
     setAvatar(e.target.value);
   }
-  /*
+
   const currentUser = useContext(CurrentUserContext); // suscribe to the context
 
   React.useEffect(() => {
-    if (currentUser && currentUser.name && currentUser.about) {
-      setName(currentUser.name);
+    if (currentUser && currentUser.avatar) {
+      setAvatar(currentUser.avatar);
     }
   }, [currentUser]);
-
-  */
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const user = { avatar };
 
-    onUpdateUser(user);
+    onUpdateAvatar(user);
   };
 
   return (
@@ -37,13 +35,13 @@ function EditAvatarModal({ isOpen, onClose, onUpdateUser }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <img src={profilAvatar} alt="Avatar" className="profile__avatar" />
+      <img src={currentUser.avatar} alt="Avatar" className="avatar" />
 
       <input
         id="user-name"
         type="url"
         value={avatar}
-        onChange={handleNameChange}
+        onChange={handleAvatarChange}
         className="modal__form-input"
         placeholder="ingresa tu avatar (url)"
         minLength="2"

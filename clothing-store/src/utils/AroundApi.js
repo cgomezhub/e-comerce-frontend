@@ -64,6 +64,44 @@ class Api {
         console.log(err);
       });
   }
+
+  // actualizar el perfil del usuario
+
+  userProfileUpdate(updatedData) {
+    return fetch(`${this.address}/users/me`, {
+      method: "PATCH",
+      headers: this.getHeaders(),
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  // Actualizar la foto de perfil
+
+  userAvatarUpdate(updatedAvatar) {
+    return fetch(`${this.address}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this.getHeaders(),
+      body: JSON.stringify(updatedAvatar),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 export const api = new Api({

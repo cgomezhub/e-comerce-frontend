@@ -24,7 +24,7 @@ function Profile({ onEditProfileClick, onEditAvatarClick }) {
         />
       </div>
       <div className="profile__container">
-        <span className="profile__name">Hola {currentUser.name}</span>
+        <span className="profile__name">Hola! {currentUser.name}</span>
         <img
           src={pencilEdit}
           alt="Pencil de editar"

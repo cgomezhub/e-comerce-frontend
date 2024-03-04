@@ -31,7 +31,9 @@ function InfoTooltipFail({ isOpen, onClose }) {
           className="container-info-tool__image"
         />
         <h2 className="container-info-tool__text">
-          Uy, algo salió mal. Por favor, inténtalo de nuevo.
+          Lo sentimos!, algo ha salido mal durante la solicitud. Es posible que
+          haya un problema de conexión o que el servidor no funcione. Por favor,
+          inténtalo más tarde
         </h2>
       </div>
     </section>
