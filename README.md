@@ -1,3 +1,25 @@
+# Project Description:
+
+This project describes the development of the front-end of a web store for a full-stack application. The front-end will be built using modern web technologies such as HTML5, CSS3, and JavaScript. The project also include React library.
+
+# Technologies Used:
+
+- HTML5
+- CSS3
+- JavaScript
+- Node.js
+- React
+
+# Contact:
+
+For any questions or comments, contact [ Carlos Gomez] at [cgomezlugo@gmail.com].
+
+# Getting Started:
+
+- Install dependencies: npm install
+- Start the development server: npm start
+- Open the browser at localhost:3000
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
