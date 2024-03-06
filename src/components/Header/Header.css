@@ -1,6 +1,6 @@
 .header {
   width: 69%;
-  margin: 0 auto;
+  margin: 2% auto 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -10,7 +10,6 @@
 
 @media screen and (min-width: 768px) and (max-width: 1280px) {
   .header {
-    margin: 0 auto;
     width: 100%;
   }
 }
@@ -58,6 +57,10 @@
   color: #ffffff;
 }
 
+.header__email:hover {
+  color: blue;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1280px) {
   .header__email {
     font-size: 18px;
@@ -87,6 +90,6 @@
 @media screen and (max-width: 768px) {
   .header__close {
     margin: 5% auto;
-    font-size: 18px;
+    font-size: 16px;
   }
 }

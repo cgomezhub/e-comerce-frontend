@@ -57,6 +57,13 @@
   }
 }
 
+.product__stock {
+  color: rgb(0, 0, 0, 0.6);
+  margin: 2% 6% 0;
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .product__title {
   font-family: "Inter", Arial, sans-serif;
   font-size: 12px;
@@ -150,7 +157,6 @@
   border: none;
   background: url(../../images/wHeart.svg) center no-repeat;
   width: 10%;
-  /*opacity: 70%;*/
   transition: 0.5s;
 }
 
@@ -255,5 +261,35 @@
 @keyframes spin {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.product__heart {
+  border: none;
+  background: url(../../images/wHeart.svg) center no-repeat;
+  width: 10%;
+  transition: 0.5s;
+}
+
+.product__heart:hover {
+  opacity: 100%;
+  transform: scale(1.5);
+}
+
+.product__heart_active {
+  opacity: 1;
+  background: url(../../images/Black-heart.png) center no-repeat;
+  background-size: 100%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .product__heart {
+    background-size: 55%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .product__heart {
+    background-size: 45%;
   }
 }

@@ -1,9 +1,8 @@
 import "./Products.css";
 import React, { useContext, useState } from "react";
 import { SearchContext } from "../../contexts/SearchContext";
-// import React, { useContext } from "react";
 
-//import { CurrentUserContext } from "../contexts/CurrentUserContext";
+// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Products({
   onSelectedProduct,
@@ -13,7 +12,7 @@ function Products({
   products,
   isLoading,
 }) {
-  // const currentUser = useContext(CurrentUserContext);
+  //  const currentUser = useContext(CurrentUserContext);
   const { searchTerm } = useContext(SearchContext); // Obtiene el valor de `searchTerm` del contexto
 
   const [numToShow, setNumToShow] = useState(3); // Nuevo estado para el número de productos a mostrar
@@ -40,22 +39,21 @@ function Products({
             const key = product._id || index; // Si la tarjeta no tiene _id, usa el índice del array
 
             // Verifica si el usuario actual agrego el producto a favoritos
-            // const isLiked = product.likes.some((i) => i === currentUser._id);
+
+            /*const isLiked = product.likes.some((i) => i === currentUser._id);
 
             // Verifica si el usuario actual agrego el producto al carrito
-            // const isAttached = product.attaches.some(
-            //  (i) => i === currentUser._id
-            // );
+            const isCarted = product.cart.some((i) => i === currentUser._id);
 
             // Crea una variable que después establecerás en `className` para el botón favoritos
-            // const likeButtonClassName = `product__heart ${
-            //  isLiked ? "product__heart_active" : "product__heart"
-            // }`;
+            const likeButtonClassName = `product__heart ${
+              isLiked ? "product__heart_active" : "product__heart"
+            }`;
 
             // Crea una variable que después establecerás en `className` para el botón favoritos
-            // const cartButtonClassName = `product__cart ${
-            //  isAttached ? "product__cart_active" : "product__cart"
-            // }`;
+            const cartButtonClassName = `product__cart ${
+              isCarted ? "product__cart_active" : "product__cart"
+            }`; */
 
             return (
               <div className="product" key={key}>
@@ -64,15 +62,18 @@ function Products({
                   src={product.image}
                   alt={`imagen de ${product.titte}`}
                 />
+                <span className="product__stock">Stock:{product.stock}</span>
                 <p className="product__title">{product.title}</p>
                 <p className="product__subtitle">
                   {product.description
                     ? product.description
                     : "Sin descripción"}
                 </p>
-                <span className="product__price">${product.price}</span>
+                <span className="product__price">
+                  {product.stock === 0 ? "NA" : `$${product.price}`}
+                </span>
                 <div className="product__buttons">
-                  <button className="product__like"></button>
+                  <button className="product__heart"></button>
                   <button className="product__cart"></button>
                 </div>
               </div>

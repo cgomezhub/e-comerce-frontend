@@ -15,7 +15,7 @@ import NotFound from "../NotFound/NotFound";
 import Footer from "../Footer/Footer";
 
 import apiProducts from "../../utils/FakeStoreApi";
-import { api, apiAuth } from "../../utils/AroundApi";
+import { api, apiAuth } from "../../utils/webStoreApi";
 import { apiMail } from "../../utils/MailSenderApi";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -234,15 +234,14 @@ function App() {
                 isLoggedIn={isLoggedIn}
               />
             }
-          >
-            <Route path="about-us" element={<About />} />
-            <Route
-              path="contact-us"
-              element={
-                <Contact onSendEmail={handleSendEmail} isLoading={isLoading} />
-              }
-            />
-          </Route>
+          />
+          <Route path="about-us" element={<About />} />
+          <Route
+            path="contact-us"
+            element={
+              <Contact onSendEmail={handleSendEmail} isLoading={isLoading} />
+            }
+          />
           <Route>
             <Route path="/*" element={<NotFound />} />
           </Route>

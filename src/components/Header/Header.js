@@ -20,7 +20,9 @@ function Header({
   if (isLoggedIn) {
     return (
       <header className="header">
-        <img src={happyHome} alt="Happy Home" className="header__logo" />
+        <Link to="/">
+          <img src={happyHome} alt="Happy Home" className="header__logo" />
+        </Link>
         <div className="header__container">
           <p className="header__email">{userEmail}</p>
           <button onClick={handleLogout} className="header__close">

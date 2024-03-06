@@ -24,7 +24,6 @@ function Main({
           onEditAvatarClick={onEditAvatarClick}
           isLoggedIn={isLoggedIn}
         />
-        <Outlet />
         <Products products={products} isLoading={isLoading} />
       </SearchContext.Provider>
     </main>

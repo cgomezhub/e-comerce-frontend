@@ -12,8 +12,6 @@ function EditProfileModal({
 }) {
   const [name, setName] = useState("");
 
-  const about = "usuario de la tienda";
-
   function handleNameChange(e) {
     setName(e.target.value);
   }
@@ -29,7 +27,7 @@ function EditProfileModal({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const user = { name, about };
+    const user = { name };
 
     onUpdateUser(user);
   };
