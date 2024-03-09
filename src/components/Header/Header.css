@@ -50,6 +50,13 @@
   align-items: center;
 }
 
+@media screen and (max-width: 768px) {
+  .header__container {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .header__email {
   font-family: "inter", sans-serif, Arial;
   font-size: 18px;

@@ -76,4 +76,9 @@
 .modal__close {
   margin-right: 3%;
   width: 20px;
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  opacity: 0.7;
 }

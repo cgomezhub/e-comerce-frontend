@@ -102,10 +102,92 @@ class Api {
         console.log(err);
       });
   }
+  getProductList() {
+    return fetch(`${this.address}/products`, {
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.error("Error message");
+      });
+  }
+
+  getCartProducts() {
+    return fetch(`${this.address}/cart-products`, {
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.error("Error message");
+      });
+  }
+
+  changeLikeStatus(productId, like) {
+    const method = like ? "PUT" : "DELETE";
+    return fetch(`${this.address}/products/likes/${productId}`, {
+      method: method,
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  changeCartStatus(productId, notCarted) {
+    const method = notCarted ? "PUT" : "DELETE";
+    return fetch(`${this.address}/products/carts/${productId}`, {
+      method: method,
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  changeCartProducts(productId, notAddedToCart) {
+    const method = notAddedToCart ? "PUT" : "DELETE";
+    return fetch(`${this.address}/cart-products/${productId}`, {
+      method: method,
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 export const api = new Api({
-  address: "https://api.around.myremotetest.eu",
+  address: "http://localhost:3002",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
@@ -113,7 +195,7 @@ export const api = new Api({
 });
 
 export const apiAuth = new Api({
-  address: "https://api.around.myremotetest.eu",
+  address: "http://localhost:3002",
   headers: {
     "Content-Type": "application/json",
   },

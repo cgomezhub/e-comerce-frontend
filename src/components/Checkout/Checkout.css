@@ -1,8 +1,14 @@
 .checkout {
   background-color: white;
-  width: 100%;
-  margin: 0;
+  width: 69%;
+  margin: 0 auto;
   border-top: 1px solid transparent;
+}
+
+@media screen and (min-width: 1px) and (max-width: 1280px) {
+  .checkout {
+    width: 100%;
+  }
 }
 
 .checkout__container {
@@ -29,6 +35,8 @@
   font-size: 16px;
   font-weight: 400;
   margin: 2% auto 1% 5%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .checkout__container-input {
   width: 87.5%;

@@ -8,7 +8,13 @@ import cart from "../../images/shoppCart.svg";
 
 import { Link } from "react-router-dom";
 
-function Navigation({ onEditProfileClick, onEditAvatarClick, isLoggedIn }) {
+function Navigation({
+  onEditProfileClick,
+  onEditAvatarClick,
+  isLoggedIn,
+  cartProducts,
+  favoriteProducts,
+}) {
   const { setSearchTerm } = useContext(SearchContext);
   const [inputValue, setInputValue] = useState("");
 
@@ -55,10 +61,14 @@ function Navigation({ onEditProfileClick, onEditAvatarClick, isLoggedIn }) {
             onEditAvatarClick={onEditAvatarClick}
           />
         )}
-        <img src={witheHeart} alt="favorites" className="navigation__icon" />
-        <span className="navigation__count">{0}</span>
-        <img src={cart} alt="Cart" className="navigation__icon" />
-        <span className="navigation__count">{0}</span>
+        <Link to="/favorites">
+          <img src={witheHeart} alt="favorites" className="navigation__icon" />
+        </Link>
+        <span className="navigation__count">{favoriteProducts.length}</span>
+        <Link to="/shopping-cart">
+          <img src={cart} alt="Cart" className="navigation__icon" />
+        </Link>
+        <span className="navigation__count">{cartProducts.length}</span>
       </div>
     </nav>
   );

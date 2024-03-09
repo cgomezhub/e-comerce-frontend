@@ -7,6 +7,7 @@
   grid-gap: 10px 10px;
   align-items: start;
   border-bottom: 1px solid transparent;
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1280px) {
@@ -144,7 +145,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 30px;
+  height: 33px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -153,39 +154,9 @@
   opacity: 90%;
 }
 
-.product__like {
-  border: none;
-  background: url(../../images/wHeart.svg) center no-repeat;
-  width: 10%;
-  transition: 0.5s;
-}
-
-.product__like:hover {
-  opacity: 100%;
-  transform: scale(1.5);
-}
-
-.product__like_active {
-  opacity: 1;
-  background: url(../../images/Black-heart.png) center no-repeat;
-  background-size: 100%;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1280px) {
-  .product__like {
-    background-size: 55%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .product__like {
-    background-size: 45%;
-  }
-}
-
 .product__cart {
   border: none;
-  background: url(../../images/empty_shop_cart.svg) center no-repeat;
+  background: url(../../images/full_shop_cart.svg) center no-repeat;
   width: 14%;
   transition: 0.5s;
 }
@@ -197,7 +168,7 @@
 
 .product__cart_active {
   opacity: 1;
-  background: url(../../images/full_shop_cart.svg) center no-repeat;
+  background: url(../../images/empty_shop_cart.svg) center no-repeat;
   background-size: 100%;
 }
 
@@ -266,7 +237,7 @@
 
 .product__heart {
   border: none;
-  background: url(../../images/wHeart.svg) center no-repeat;
+  background: url(../../images/Black-heart.png) center no-repeat;
   width: 10%;
   transition: 0.5s;
 }
@@ -278,7 +249,7 @@
 
 .product__heart_active {
   opacity: 1;
-  background: url(../../images/Black-heart.png) center no-repeat;
+  background: url(../../images/wHeart.svg) center no-repeat;
   background-size: 100%;
 }
 
@@ -292,4 +263,25 @@
   .product__heart {
     background-size: 45%;
   }
+}
+
+.products__login-button {
+  line-height: 1.15;
+  margin: 1% auto;
+  width: 75%;
+  height: 10px;
+  text-align: center;
+  background-color: rgb(0, 0, 225, 0.3);
+  color: white;
+  font-family: "Inter", Arial, sans-serif;
+  padding: 5px 5px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.products__login-button:hover {
+  opacity: 1.5;
+  transform: scale(1.05);
 }
