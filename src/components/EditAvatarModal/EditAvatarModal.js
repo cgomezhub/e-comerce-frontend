@@ -38,7 +38,7 @@ function EditAvatarModal({ isOpen, onClose, onUpdateAvatar }) {
       <img src={currentUser.avatar} alt="Avatar" className="avatar" />
 
       <input
-        id="user-name"
+        id="user-avatar"
         type="url"
         value={avatar}
         onChange={handleAvatarChange}
@@ -49,7 +49,7 @@ function EditAvatarModal({ isOpen, onClose, onUpdateAvatar }) {
         required
       />
       <span className="modal__form-error"></span>
-      <button id="user-login" type="submit" className="modal__form-register">
+      <button type="submit" className="modal__form-register">
         Continuar
       </button>
     </ModalWithForm>

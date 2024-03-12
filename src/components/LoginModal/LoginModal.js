@@ -6,21 +6,31 @@ function LoginModal({ isOpen, onClose, onLoginSubmit, onRegisterClick }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setFormValid] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
-    validateForm();
-  }, [email, password]);
+    const validateForm = () => {
+      setFormValid(email !== "" && password.length >= 8 && emailError === "");
+    };
 
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
+    validateForm();
+  }, [email, password, emailError]);
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (event.target.value === "") {
+      setEmailError("");
+    } else if (!emailRegex.test(event.target.value)) {
+      setEmailError("Correo electrónico no válido");
+    } else {
+      setEmailError("");
+    }
+  };
+
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
-
-  const validateForm = () => {
-    setFormValid(email !== "" && password !== "");
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,18 +55,24 @@ function LoginModal({ isOpen, onClose, onLoginSubmit, onRegisterClick }) {
         onChange={handleEmailChange}
         className="modal__form-input"
         placeholder="Correo electrónico"
-        minLength="2"
+        minLength="8"
         maxLength="200"
         required
       />
-      <span className="modal__form-error"></span>
+      <span
+        className={`modal__form-error ${
+          isOpen ? "modal__form-error_active" : ""
+        }`}
+      >
+        {emailError}
+      </span>
       <input
-        id="register-password"
+        id="login-password"
         type="password"
         value={password}
         onChange={handlePasswordChange}
         className="modal__form-input"
-        placeholder="Contraseña"
+        placeholder="Introduzca contraseña mayor de al menos 8 caracteres"
         minLength="8"
         maxLength="200"
         required
@@ -64,7 +80,6 @@ function LoginModal({ isOpen, onClose, onLoginSubmit, onRegisterClick }) {
       <span className="modal__form-error"></span>
       <div className="modal__form-buttons">
         <button
-          id="user-login"
           type="submit"
           className="modal__form-register"
           disabled={!isFormValid}

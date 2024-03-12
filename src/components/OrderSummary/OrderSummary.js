@@ -1,45 +1,17 @@
 import "./OrderSummary.css";
-import close from "../../images/closeX.svg";
 import React, { useState } from "react";
-
-const shoppingProducts = [
-  // Array de productos anadidos al carrito que llegaran desde el arreglo de productos
-  {
-    _id: "1",
-    name: "Camiseta",
-    link: "https://media.istockphoto.com/id/1501781167/es/foto/camiseta-negra-aislada-en-blanco.jpg?s=612x612&w=is&k=20&c=Oj93T1rnrnxFuyPlm0ChlG1LITEYiN8wb9j7gCflvAk=",
-    likes: ["1", "2"],
-    attaches: ["1", "2"],
-    stock: 10,
-    description: "Camiseta negra de algodón",
-    price: 100,
-  },
-  {
-    _id: "2",
-    name: "Pantalón",
-    link: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    likes: ["1", "2"],
-    attaches: ["1", "2"],
-    stock: 5,
-    description: "Pantalón de mezclilla",
-    price: 200,
-  },
-  {
-    _id: "3",
-    name: "Zapatos",
-    link: "https://media.istockphoto.com/id/1629114862/es/foto/primer-plano-de-zapatillas-deportivas-blancas-sobre-fondo-blanco.jpg?s=2048x2048&w=is&k=20&c=PDkXkxm3gcejli3vWzZAHmVj0cVw5mmKFKzZGKov5ks=",
-    likes: ["1", "2"],
-    attaches: ["1", "2"],
-    stock: 0,
-    description: "Zapatos deportivos blancos",
-    price: 300,
-  },
-];
+import Summary from "../Summary/Summary";
 
 export default function OrderSummary({
   onSelectedProduct,
   onProductLinkClick,
   onProductCart,
+  cartProducts,
+  subtotal,
+  taxes,
+  deliveryCost,
+  total,
+  deliveryOption,
 }) {
   const [selectedNumber, setSelectedNumber] = useState(1);
 
@@ -57,8 +29,8 @@ export default function OrderSummary({
             Agradecemos su pedido, actualmente lo estamos procesando. ¡Así que
             espera y te enviaremos la confirmación muy pronto!
           </p>
-          {Array.isArray(shoppingProducts) &&
-            shoppingProducts.map((product, index) => {
+          {Array.isArray(cartProducts) &&
+            cartProducts.map((product, index) => {
               const key = product._id || index; // Si la tarjeta no tiene _id, usa el índice del array
 
               return (
@@ -67,7 +39,7 @@ export default function OrderSummary({
                     <div className="item__container-link">
                       <img
                         className="item__link"
-                        src={product.link}
+                        src={product.image}
                         alt={`imagen de ${product.name}`}
                         onClick={() => {
                           onSelectedProduct(product);
@@ -96,24 +68,13 @@ export default function OrderSummary({
             })}
         </section>
         <section className="checkout__container-flex">
-          <ul className="summary">
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">Subtotal:</span>
-              <span className="summary__subtotal-item-qty">$300</span>
-            </li>
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">Envío:</span>
-              <span className="summary__subtotal-item-qty">$10</span>
-            </li>
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">Impuestos:</span>
-              <span className="summary__subtotal-item-qty">$10</span>
-            </li>
-            <li className="summary__total">
-              <span className="summary__total-item-title">Importe total:</span>
-              <span className="summary__total-item-qty">$1000</span>
-            </li>
-          </ul>
+          <Summary
+            subtotal={subtotal}
+            taxes={taxes}
+            deliveryCost={deliveryCost}
+            deliveryOption={deliveryOption}
+            total={total}
+          />
           <p className="checkout__container-surtitle">Direción de envio</p>
           <p className="checkout__container-subtitle">
             Kristin Watson 7363 Cynthia Pass Toronto, ON N3Y 4H8

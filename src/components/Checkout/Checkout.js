@@ -1,13 +1,20 @@
 import "./Checkout.css";
 import close from "../../images/closeX.svg";
-import React, { useState, useEffect } from "react";
+import Summary from "../Summary/Summary";
+import { Link } from "react-router-dom";
 
 export default function Checkout({
-  onProductCart,
   cartProducts,
   selectedNumbers,
   setSelectedNumbers,
   removeProductCart,
+  subtotal,
+  taxes,
+  deliveryOption,
+  setDeliveryOption,
+  deliveryCost,
+  total,
+  email,
 }) {
   const handleQuantityChange = (productId, event) => {
     setSelectedNumbers((prevNumbers) => ({
@@ -15,36 +22,6 @@ export default function Checkout({
       [productId]: event.target.value,
     }));
   };
-  const [subtotal, setSubtotal] = useState(0);
-  const [taxes, setTaxes] = useState(0);
-  const [deliveryOption, setDeliveryOption] = useState("standard"); // 'standard' o 'express'
-  const [deliveryCost, setDeliveryCost] = useState(0);
-  const [total, setTotal] = useState(0);
-
-  useEffect(() => {
-    const newSubtotal = cartProducts.reduce((total, product) => {
-      const quantity = selectedNumbers[product._id] || 0;
-      return total + quantity * product.price;
-    }, 0);
-    setSubtotal(newSubtotal.toFixed(2));
-
-    const newTaxes = (newSubtotal * 0.16).toFixed(2);
-    setTaxes(newTaxes);
-
-    const deliveryStandard = (5).toFixed(2);
-    const deliveryExpress = (15).toFixed(2);
-    const newDelivery =
-      deliveryOption === "standard" ? deliveryStandard : deliveryExpress;
-    setDeliveryCost(newDelivery);
-
-    const newTotal = (
-      parseFloat(newSubtotal) +
-      parseFloat(newTaxes) +
-      parseFloat(newDelivery)
-    ).toFixed(2);
-
-    setTotal(newTotal);
-  }, [cartProducts, selectedNumbers, deliveryOption]);
 
   return (
     <div className="checkout">
@@ -55,7 +32,12 @@ export default function Checkout({
             {" "}
             Correo electrónico
           </label>
-          <input className="checkout__container-input" type="email" required />
+          <input
+            className="checkout__container-input"
+            type="email"
+            value={email}
+            required
+          />
         </section>
         <section className="checkout__container-flex">
           <h2 className="checkout__container-title">Información de Envio</h2>
@@ -231,34 +213,21 @@ export default function Checkout({
             })}
         </section>
         <section className="shopping-cart__container-flex">
-          <ul className="summary">
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">Subtotal:</span>
-              <span className="summary__subtotal-item-qty">${subtotal}</span>
-            </li>
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">
-                Envío {deliveryOption}:
-              </span>
-              <span className="summary__subtotal-item-qty">
-                ${deliveryCost}
-              </span>
-            </li>
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">Impuestos:</span>
-              <span className="summary__subtotal-item-qty">${taxes}</span>
-            </li>
-            <li className="summary__total">
-              <span className="summary__total-item-title">Importe total:</span>
-              <span className="summary__total-item-qty">${total}</span>
-            </li>
-          </ul>
-          <button
-            type="submit"
-            className="shopping-cart__container-summary-button"
-          >
-            Confirmar compra
-          </button>
+          <Summary
+            subtotal={subtotal}
+            taxes={taxes}
+            deliveryCost={deliveryCost}
+            deliveryOption={deliveryOption}
+            total={total}
+          />
+          <Link to="/order-summary">
+            <button
+              type="submit"
+              className="shopping-cart__container-summary-button"
+            >
+              Confirmar compra
+            </button>
+          </Link>
         </section>
       </form>
     </div>

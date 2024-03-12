@@ -1,13 +1,18 @@
 import "./ShoppingCart.css";
 import listErase from "../../images/closeX.svg";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Summary from "../Summary/Summary";
 
 export default function ShoppingCart({
   cartProducts,
   selectedNumbers,
   setSelectedNumbers,
   removeProductCart,
+  subtotal,
+  taxes,
+  deliveryCost,
+  total,
+  deliveryOption,
 }) {
   const handleQuantityChange = (productId, event) => {
     setSelectedNumbers((prevNumbers) => ({
@@ -15,29 +20,6 @@ export default function ShoppingCart({
       [productId]: event.target.value,
     }));
   };
-
-  const [subtotal, setSubtotal] = useState(0);
-  const [taxes, setTaxes] = useState(0);
-  const [delivery, setDelivery] = useState(0);
-  const [total, setTotal] = useState(0);
-
-  useEffect(() => {
-    const newSubtotal = cartProducts.reduce((total, product) => {
-      const quantity = selectedNumbers[product._id] || 0;
-      return total + quantity * product.price;
-    }, 0);
-    setSubtotal(newSubtotal.toFixed(2));
-    const newTaxes = (newSubtotal * 0.16).toFixed(2);
-    setTaxes(newTaxes);
-    const newDelivery = (5).toFixed(2);
-    setDelivery(newDelivery);
-    const newTotal = (
-      parseFloat(newSubtotal) +
-      parseFloat(newTaxes) +
-      parseFloat(newDelivery)
-    ).toFixed(2);
-    setTotal(newTotal);
-  }, [cartProducts, selectedNumbers]);
 
   return (
     <div className="shopping-cart">
@@ -109,26 +91,13 @@ export default function ShoppingCart({
           <p className="shopping-cart__container-summary-title">
             Resumen de compra
           </p>
-          <ul className="summary">
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">Subtotal:</span>
-              <span className="summary__subtotal-item-qty">${subtotal}</span>
-            </li>
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">
-                Envío Standar:
-              </span>
-              <span className="summary__subtotal-item-qty">${delivery}</span>
-            </li>
-            <li className="summary__subtotal">
-              <span className="summary__subtotal-item-title">Taxes:</span>
-              <span className="summary__subtotal-item-qty">${taxes}</span>
-            </li>
-            <li className="summary__total">
-              <span className="summary__total-item-title">Total:</span>
-              <span className="summary__total-item-qty">${total}</span>
-            </li>
-          </ul>
+          <Summary
+            subtotal={subtotal}
+            taxes={taxes}
+            deliveryCost={deliveryCost}
+            total={total}
+            deliveryOption={deliveryOption}
+          />
           <Link to="/checkout">
             <span className="shopping-cart__container-summary-checkout">
               Proceder al pago

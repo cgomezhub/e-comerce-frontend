@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
+import ProtectedRoute from "../ProtectedRoute";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import About from "../About/About";
@@ -22,18 +23,19 @@ import { apiMail } from "../../utils/MailSenderApi";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Checkout from "../Checkout/Checkout";
+import OrderSummary from "../OrderSummary/OrderSummary";
 
 function App() {
-  const [selectedNumbers, setSelectedNumbers] = useState(() => {
-    const savedNumbers = localStorage.getItem("selectedNumbers");
-    return savedNumbers ? JSON.parse(savedNumbers) : {};
-  });
-
   const [products, setProducts] = useState([]);
 
   const [cartProducts, setCartProducts] = useState(() => {
     const savedCartProducts = localStorage.getItem("cartProducts");
     return savedCartProducts ? JSON.parse(savedCartProducts) : [];
+  });
+
+  const [selectedNumbers, setSelectedNumbers] = useState(() => {
+    const savedNumbers = localStorage.getItem("selectedNumbers");
+    return savedNumbers ? JSON.parse(savedNumbers) : {};
   });
 
   useEffect(() => {
@@ -48,6 +50,37 @@ function App() {
     const savedFavoriteProducts = localStorage.getItem("favoriteProducts");
     return savedFavoriteProducts ? JSON.parse(savedFavoriteProducts) : [];
   });
+
+  const [subtotal, setSubtotal] = useState(0);
+  const [taxes, setTaxes] = useState(0);
+  const [deliveryOption, setDeliveryOption] = useState("standard");
+  const [deliveryCost, setDeliveryCost] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const newSubtotal = cartProducts.reduce((total, product) => {
+      const quantity = selectedNumbers[product._id] || 0;
+      return total + quantity * product.price;
+    }, 0);
+    setSubtotal(newSubtotal.toFixed(2));
+
+    const newTaxes = (newSubtotal * 0.16).toFixed(2);
+    setTaxes(newTaxes);
+
+    const deliveryStandard = (5).toFixed(2);
+    const deliveryExpress = (15).toFixed(2);
+    const newDelivery =
+      deliveryOption === "standard" ? deliveryStandard : deliveryExpress;
+    setDeliveryCost(newDelivery);
+
+    const newTotal = (
+      parseFloat(newSubtotal) +
+      parseFloat(newTaxes) +
+      parseFloat(newDelivery)
+    ).toFixed(2);
+
+    setTotal(newTotal);
+  }, [cartProducts, selectedNumbers, deliveryOption]);
 
   useEffect(() => {
     localStorage.setItem("favoriteProducts", JSON.stringify(favoriteProducts));
@@ -374,37 +407,72 @@ function App() {
           <Route
             path="shopping-cart"
             element={
-              <ShoppingCart
-                cartProducts={cartProducts}
-                selectedNumbers={selectedNumbers}
-                setSelectedNumbers={setSelectedNumbers}
-                removeProductCart={removeProductCart}
-              />
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <ShoppingCart
+                  cartProducts={cartProducts}
+                  selectedNumbers={selectedNumbers}
+                  setSelectedNumbers={setSelectedNumbers}
+                  removeProductCart={removeProductCart}
+                  subtotal={subtotal}
+                  taxes={taxes}
+                  deliveryOption={deliveryOption}
+                  deliveryCost={deliveryCost}
+                  total={total}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
             path="favorites"
             element={
-              <Favorites
-                favoriteProducts={favoriteProducts}
-                removeProductFavorites={removeProductFavorites}
-                onProductLike={handleProductLike}
-                addProductToCart={addProductToCart}
-              />
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Favorites
+                  favoriteProducts={favoriteProducts}
+                  removeProductFavorites={removeProductFavorites}
+                  onProductLike={handleProductLike}
+                  addProductToCart={addProductToCart}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
             path="checkout"
             element={
-              <Checkout
-                cartProducts={cartProducts}
-                selectedNumbers={selectedNumbers}
-                setSelectedNumbers={setSelectedNumbers}
-                removeProductCart={removeProductCart}
-              />
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Checkout
+                  cartProducts={cartProducts}
+                  selectedNumbers={selectedNumbers}
+                  setSelectedNumbers={setSelectedNumbers}
+                  removeProductCart={removeProductCart}
+                  subtotal={subtotal}
+                  taxes={taxes}
+                  deliveryOption={deliveryOption}
+                  deliveryCost={deliveryCost}
+                  total={total}
+                  setDeliveryOption={setDeliveryOption}
+                  email={email}
+                />
+              </ProtectedRoute>
             }
           />
-
+          <Route
+            path="order-summary"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <OrderSummary
+                  cartProducts={cartProducts}
+                  selectedNumbers={selectedNumbers}
+                  setSelectedNumbers={setSelectedNumbers}
+                  removeProductCart={removeProductCart}
+                  subtotal={subtotal}
+                  taxes={taxes}
+                  deliveryOption={deliveryOption}
+                  deliveryCost={deliveryCost}
+                  total={total}
+                />
+              </ProtectedRoute>
+            }
+          />
           <Route>
             <Route path="/*" element={<NotFound />} />
           </Route>

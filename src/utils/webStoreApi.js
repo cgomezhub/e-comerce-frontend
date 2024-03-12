@@ -187,7 +187,7 @@ class Api {
 }
 
 export const api = new Api({
-  address: "http://localhost:3002",
+  address: "http://34.172.217.13:3000",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
@@ -195,7 +195,7 @@ export const api = new Api({
 });
 
 export const apiAuth = new Api({
-  address: "http://localhost:3002",
+  address: "http://34.172.217.13:3000",
   headers: {
     "Content-Type": "application/json",
   },
