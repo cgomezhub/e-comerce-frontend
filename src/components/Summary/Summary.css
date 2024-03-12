@@ -1,0 +1,32 @@
+.summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  width: 95%;
+}
+
+.summary__subtotal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 4% 4% 0;
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 1%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.summary__subtotal-item-qty {
+  color: black;
+}
+
+.summary__total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 8% 4%;
+  font-weight: 500;
+  font-size: 18px;
+}

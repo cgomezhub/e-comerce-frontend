@@ -1,0 +1,39 @@
+.container-info-tool {
+  width: 50%;
+  background-color: white;
+  border-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  margin: 5% auto;
+}
+
+.container-info-tool__close {
+  width: 20px;
+  height: 20px;
+  margin: 5% 5% 0 auto;
+  background-image: url(../../images/closeX.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.container-info-tool__close:hover {
+  opacity: 70%;
+}
+
+.container-info-tool__image {
+  width: 28%;
+  margin: 15% auto;
+}
+
+.container-info-tool__text {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 121%;
+  color: black;
+  width: 50%;
+  margin: 0% auto 20%;
+  text-align: center;
+}
