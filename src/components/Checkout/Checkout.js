@@ -25,20 +25,6 @@ export default function Checkout({
       [productId]: event.target.value,
     }));
   };
-  /*
-  const [form, setForm] = useState({
-    email: email,
-    fullName: "",
-    company: "",
-    address: "",
-    apartment: "",
-    city: "",
-    country: "",
-    state: "",
-    postalCode: "",
-    phone: "",
-  });
-*/
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {

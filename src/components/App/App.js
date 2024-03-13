@@ -253,7 +253,6 @@ function App() {
   // manejador del token para obtener  usuario
 
   const handleUser = () => {
-    //console.log(localStorage.getItem("token"));
     api
       .getUser()
       .then((response) => {
@@ -415,7 +414,6 @@ function App() {
               <Contact onSendEmail={handleSendEmail} isLoading={isLoading} />
             }
           />
-          {console.log(cartProducts.length)}
           <Route
             path="shopping-cart"
             element={

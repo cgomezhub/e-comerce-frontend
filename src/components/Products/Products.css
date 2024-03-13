@@ -185,7 +185,7 @@
 }
 
 .products__not-found {
-  grid-column: 1 / 4; /* Ocupa desde la columna 1 hasta la 3 */
+  grid-column: 1 / 4;
   grid-row: 1;
   text-align: center;
   width: 100%;

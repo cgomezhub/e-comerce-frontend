@@ -29,18 +29,6 @@
 .header__logo:hover {
   opacity: 50%;
 }
-/*
-@media screen and (min-width: 320px) and (max-width: 768px) {
-  .header__logo {
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .header__logo {
-  }
-}
-
-*/
 
 .header__container {
   width: 50%;
