@@ -10,6 +10,12 @@
   gap: 20px;
 }
 
+@media screen and (max-width: 768px) {
+  .favorites {
+    width: 100%;
+  }
+}
+
 .favorites__title {
   font-size: 35px;
   font-weight: 500;

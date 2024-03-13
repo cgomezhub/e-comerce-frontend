@@ -2,6 +2,7 @@ import "./Checkout.css";
 import close from "../../images/closeX.svg";
 import Summary from "../Summary/Summary";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Checkout({
   cartProducts,
@@ -15,12 +16,53 @@ export default function Checkout({
   deliveryCost,
   total,
   email,
+  form,
+  setForm,
 }) {
   const handleQuantityChange = (productId, event) => {
     setSelectedNumbers((prevNumbers) => ({
       ...prevNumbers,
       [productId]: event.target.value,
     }));
+  };
+  /*
+  const [form, setForm] = useState({
+    email: email,
+    fullName: "",
+    company: "",
+    address: "",
+    apartment: "",
+    city: "",
+    country: "",
+    state: "",
+    postalCode: "",
+    phone: "",
+  });
+*/
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    const fields = [
+      "fullName",
+      "address",
+      "apartment",
+      "city",
+      "country",
+      "state",
+      "postalCode",
+      "phone",
+    ];
+    const isFormValid = fields.every(
+      (field) => form[field] && form[field].length >= 2
+    );
+    setIsFormValid(isFormValid);
+  }, [form]);
+
+  const handleInputChange = (event, field) => {
+    setForm({
+      ...form,
+      [field]: event.target.value,
+    });
   };
 
   return (
@@ -36,31 +78,52 @@ export default function Checkout({
             className="checkout__container-input"
             type="email"
             value={email}
+            //  onChange={(event) => handleInputChange(event, "email")} // Agrega un controlador de cambi
             required
           />
         </section>
         <section className="checkout__container-flex">
           <h2 className="checkout__container-title">Información de Envio</h2>
           <label className="checkout__container-label"> Nombre completo</label>
-          <input className="checkout__container-input" type="text" required />
+          <input
+            className="checkout__container-input"
+            type="text"
+            value={form.fullName}
+            required
+            onChange={(event) => handleInputChange(event, "fullName")}
+          />
           <label className="checkout__container-label">
             {" "}
             Compania (opcional)
           </label>
           <input className="checkout__container-input" type="text" />
           <label className="checkout__container-label"> Dirección</label>
-          <input className="checkout__container-input" type="text" required />
+          <input
+            className="checkout__container-input"
+            type="text"
+            required
+            value={form.address}
+            onChange={(event) => handleInputChange(event, "address")}
+          />
           <label className="checkout__container-label">
             {" "}
-            Apartamento, suite, etc.
+            # Casa, Apartamento, suite, etc.
           </label>
-          <input className="checkout__container-input" type="text" required />
+          <input
+            className="checkout__container-input"
+            type="text"
+            required
+            value={form.apartment}
+            onChange={(event) => handleInputChange(event, "apartment")}
+          />
           <div className="checkout__container-grid">
             <div className="checkout__container-grid-item">
               <label className="checkout__container-label"> Ciudad</label>
               <input
                 className="checkout__container-input"
                 type="text"
+                value={form.city}
+                onChange={(event) => handleInputChange(event, "city")}
                 required
               />
             </div>
@@ -69,6 +132,8 @@ export default function Checkout({
               <input
                 className="checkout__container-input"
                 type="text"
+                value={form.country}
+                onChange={(event) => handleInputChange(event, "country")}
                 required
               />
             </div>
@@ -77,6 +142,8 @@ export default function Checkout({
               <input
                 className="checkout__container-input"
                 type="text"
+                value={form.state}
+                onChange={(event) => handleInputChange(event, "state")}
                 required
               />
             </div>
@@ -85,13 +152,22 @@ export default function Checkout({
               <input
                 className="checkout__container-input"
                 type="text"
+                value={form.postalCode}
+                onChange={(event) => handleInputChange(event, "postalCode")}
                 required
               />
             </div>
           </div>
           <label className="checkout__container-label">Telefono</label>
-          <input className="checkout__container-input" type="number" required />
+          <input
+            className="checkout__container-input"
+            type="number"
+            value={form.phone}
+            onChange={(event) => handleInputChange(event, "phone")}
+            required
+          />
         </section>
+
         <section className="checkout__container-flex">
           <h2 className="checkout__container-title">Metodo de entrega</h2>
           <div className="checkout__container-radio">
@@ -220,14 +296,17 @@ export default function Checkout({
             deliveryOption={deliveryOption}
             total={total}
           />
-          <Link to="/order-summary">
-            <button
-              type="submit"
-              className="shopping-cart__container-summary-button"
-            >
-              Confirmar compra
-            </button>
-          </Link>
+          <button
+            type="submit"
+            className="shopping-cart__container-summary-button"
+            disabled={!isFormValid}
+          >
+            {isFormValid ? (
+              <Link to="/order-summary">Confirmar compra</Link>
+            ) : (
+              "Confirmar compra"
+            )}
+          </button>
         </section>
       </form>
     </div>

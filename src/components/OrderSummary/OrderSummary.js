@@ -12,22 +12,20 @@ export default function OrderSummary({
   deliveryCost,
   total,
   deliveryOption,
+  form,
+  email,
 }) {
-  const [selectedNumber, setSelectedNumber] = useState(1);
-
-  const handleQuantityChange = (e) => {
-    setSelectedNumber(e.target.value);
-  };
-
   return (
     <div className="checkout">
       <form className="checkout__container">
         <section className="checkout__container-flex">
           <p className="checkout__container-surtitle">Pago exitoso</p>
-          <h2 className="checkout__container-title">¡Gracias por su compra!</h2>
+          <h2 className="checkout__container-title">
+            ¡Gracias por su compra {form.fullName}!
+          </h2>
           <p className="checkout__container-subtitle">
             Agradecemos su pedido, actualmente lo estamos procesando. ¡Así que
-            espera y te enviaremos la confirmación muy pronto!
+            espera y te enviaremos la confirmación muy pronto! a {email}
           </p>
           {Array.isArray(cartProducts) &&
             cartProducts.map((product, index) => {
@@ -77,7 +75,8 @@ export default function OrderSummary({
           />
           <p className="checkout__container-surtitle">Direción de envio</p>
           <p className="checkout__container-subtitle">
-            Kristin Watson 7363 Cynthia Pass Toronto, ON N3Y 4H8
+            {form.apartment} {form.address}, {form.city}, {form.state},{" "}
+            {form.postalCode},{form.country}, {form.phone}
           </p>
         </section>
       </form>

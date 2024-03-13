@@ -1,4 +1,4 @@
-class Api {
+/* class Api {
   constructor(options) {
     this.address = options.address;
     this.headers = options.headers;
@@ -30,3 +30,5 @@ const apiProducts = new Api({
 });
 
 export default apiProducts;
+
+*/

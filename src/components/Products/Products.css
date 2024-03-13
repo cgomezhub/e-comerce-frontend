@@ -42,7 +42,7 @@
 
 @media screen and (max-width: 768px) {
   .product__image {
-    width: 400px;
+    width: 80%;
     height: 200px;
   }
 }

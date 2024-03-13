@@ -187,7 +187,7 @@ class Api {
 }
 
 export const api = new Api({
-  address: "http://34.172.217.13:3000",
+  address: "https://api.homehh.truckstore.ch",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
@@ -195,7 +195,7 @@ export const api = new Api({
 });
 
 export const apiAuth = new Api({
-  address: "http://34.172.217.13:3000",
+  address: "https://api.homehh.truckstore.ch",
   headers: {
     "Content-Type": "application/json",
   },

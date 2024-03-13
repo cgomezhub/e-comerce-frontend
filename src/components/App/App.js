@@ -33,6 +33,18 @@ function App() {
     return savedCartProducts ? JSON.parse(savedCartProducts) : [];
   });
 
+  const [form, setForm] = useState({
+    fullName: "",
+    company: "",
+    address: "",
+    apartment: "",
+    city: "",
+    country: "",
+    state: "",
+    postalCode: "",
+    phone: "",
+  });
+
   const [selectedNumbers, setSelectedNumbers] = useState(() => {
     const savedNumbers = localStorage.getItem("selectedNumbers");
     return savedNumbers ? JSON.parse(savedNumbers) : {};
@@ -451,6 +463,8 @@ function App() {
                   total={total}
                   setDeliveryOption={setDeliveryOption}
                   email={email}
+                  form={form}
+                  setForm={setForm}
                 />
               </ProtectedRoute>
             }
@@ -469,6 +483,8 @@ function App() {
                   deliveryOption={deliveryOption}
                   deliveryCost={deliveryCost}
                   total={total}
+                  form={form}
+                  email={email}
                 />
               </ProtectedRoute>
             }
