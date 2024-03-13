@@ -2,6 +2,10 @@
 
 This project describes the development of the front-end of a web store for a full-stack application. The front-end will be built using modern web technologies such as HTML5, CSS3, and JavaScript. The project also include React library.
 
+# URL and Deployment
+
+https://www.homehh.truckstore.ch/
+
 # Technologies Used:
 
 - HTML5
