@@ -27,6 +27,20 @@ function Navigation({
     setSearchTerm(inputValue);
   };
 
+  const handleFavoritesClick = (event) => {
+    if (!isLoggedIn) {
+      event.preventDefault();
+      alert("Inicia sesion para acceder a tus favoritos");
+    }
+  };
+
+  const handleCartClick = (event) => {
+    if (!isLoggedIn) {
+      event.preventDefault();
+      alert("Inicia sesion acceder a tu carrito de compras");
+    }
+  };
+
   return (
     <nav className="navigation">
       <div className="navigation__container">
@@ -62,11 +76,21 @@ function Navigation({
           />
         )}
         <Link to="/favorites">
-          <img src={witheHeart} alt="favorites" className="navigation__icon" />
+          <img
+            src={witheHeart}
+            alt="favorites"
+            className="navigation__icon"
+            onClick={handleFavoritesClick}
+          />
         </Link>
         <span className="navigation__count">{favoriteProducts.length}</span>
         <Link to="/shopping-cart">
-          <img src={cart} alt="Cart" className="navigation__icon" />
+          <img
+            src={cart}
+            alt="Cart"
+            className="navigation__icon"
+            onClick={handleCartClick}
+          />
         </Link>
         <span className="navigation__count">{cartProducts.length}</span>
       </div>

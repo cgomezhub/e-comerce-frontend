@@ -72,7 +72,7 @@ function LoginModal({ isOpen, onClose, onLoginSubmit, onRegisterClick }) {
         value={password}
         onChange={handlePasswordChange}
         className="modal__form-input"
-        placeholder="Introduzca contraseña mayor de al menos 8 caracteres"
+        placeholder="Introduzca contraseña de al menos 8 caracteres"
         minLength="8"
         maxLength="200"
         required
