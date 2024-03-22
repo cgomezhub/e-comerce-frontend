@@ -2,7 +2,7 @@ import "./InfoTooltip.css";
 import check from "../../images/Unioncheck.png";
 import { useEffect } from "react";
 
-function InfoTooltip({ isOpen, onClose, onLoginClick }) {
+function InfoTooltip({ isOpen, onClose, onLoginClick, isLoggedIn }) {
   useEffect(() => {
     const handleEscClose = (event) => {
       if (event.key === "Escape" && isOpen) {
@@ -26,7 +26,9 @@ function InfoTooltip({ isOpen, onClose, onLoginClick }) {
           className="container-info-tool__close"
           onClick={() => {
             onClose();
-            onLoginClick();
+            if (isLoggedIn === false) {
+              onLoginClick();
+            }
           }}
         ></button>
         <img

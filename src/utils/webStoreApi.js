@@ -184,10 +184,31 @@ class Api {
         console.log(err);
       });
   }
+
+  // verificar tokens de google en el backend
+
+  // login usuario
+
+  tokenCheck(token) {
+    return fetch(`${this.address}/api/auth/google`, {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({ token: token }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 export const api = new Api({
-  address: "https://api.homehh.truckstore.ch",
+  address: "http://localhost:3002",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
@@ -195,7 +216,7 @@ export const api = new Api({
 });
 
 export const apiAuth = new Api({
-  address: "https://api.homehh.truckstore.ch",
+  address: "http://localhost:3002",
   headers: {
     "Content-Type": "application/json",
   },

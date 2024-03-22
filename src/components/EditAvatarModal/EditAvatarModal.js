@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./EditAvatarModal.css";
-import profilAvatar from "../../images/avatar.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function EditAvatarModal({ isOpen, onClose, onUpdateAvatar }) {

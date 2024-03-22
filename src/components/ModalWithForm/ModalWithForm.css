@@ -82,3 +82,17 @@
 .modal__close:hover {
   opacity: 0.7;
 }
+
+.modal__form-button-google {
+  width: 40%;
+  height: 50px;
+  background-color: #4285f4;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: center;
+  margin: 5% auto;
+  cursor: pointer;
+}

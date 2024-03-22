@@ -7,6 +7,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile({ onEditProfileClick, onEditAvatarClick }) {
   const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser);
 
   return (
     <section className="profile">

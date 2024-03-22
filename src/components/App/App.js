@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import firebase from "../../auth/firebase";
+
+// Styles
 import "./App.css";
+
+// Components
 import ProtectedRoute from "../ProtectedRoute";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -17,7 +22,7 @@ import ShoppingCart from "../ShoopingCart/ShoppingCart";
 import Favorites from "../Favorites/Favorites";
 import Footer from "../Footer/Footer";
 
-// import apiProducts from "../../utils/FakeStoreApi";
+// apis
 import { api, apiAuth } from "../../utils/webStoreApi";
 import { apiMail } from "../../utils/MailSenderApi";
 
@@ -121,6 +126,47 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [token, setToken] = useState("");
+
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  const handleGoogleLogin = () => {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(() => {
+        firebase
+          .auth()
+          .currentUser.getIdToken(true)
+          .then((token) => {
+            // Esto te da un token de acceso de Google. Puedes usarlo para acceder a la API de Google.
+            // console.log(token);
+            apiAuth.tokenCheck(token).then((data) => {
+              //console.log(data);
+              if (data) {
+                localStorage.clear();
+                localStorage.setItem("token", data.token);
+                setIsLoginModalOpen(false);
+                setIsRegisterModalOpen(false);
+                setIsLoggedIn(true);
+                setIsInfoTooltipOpen(true);
+                handleUser();
+
+                navigate("/");
+              } else {
+                // maneja errores de carga de datos
+                setIsInfoTooltipFailOpen(true);
+                throw new Error("Token not returned");
+              }
+            });
+          });
+      })
+      .catch((error) => {
+        // Manejar los errores aquí.
+        setIsLoggedIn(false);
+        console.error("Error during registration:", error);
+        // ...
+      });
+  };
 
   useEffect(() => {
     handleproducts();
@@ -497,12 +543,14 @@ function App() {
           onClose={closeAllModals}
           onLoginClick={handleLoginClick}
           onRegisterSubmit={handleRegisterSubmit}
+          onGoogleLogin={handleGoogleLogin}
         />
         <LoginModal
           isOpen={isLoginModalOpen}
           onClose={closeAllModals}
           onRegisterClick={handleRegisterClick}
           onLoginSubmit={handleSigninSubmit}
+          onGoogleLogin={handleGoogleLogin}
         />
         <EditProfileModal
           isOpen={isEditProfileModalOpen}
@@ -518,6 +566,7 @@ function App() {
           isOpen={isInfoTooltipOpen}
           onClose={closeAllModals}
           onLoginClick={handleLoginClick}
+          isLoggedIn={isLoggedIn}
         />
         <InfoTooltipFail
           isOpen={isInfoTooltipFailOpen}

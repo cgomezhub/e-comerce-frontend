@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
-function RegisterModal({ isOpen, onClose, onRegisterSubmit, onLoginClick }) {
+function RegisterModal({
+  isOpen,
+  onClose,
+  onRegisterSubmit,
+  onLoginClick,
+  onGoogleLogin,
+}) {
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [password, setPassword] = useState("");
@@ -69,6 +75,12 @@ function RegisterModal({ isOpen, onClose, onRegisterSubmit, onLoginClick }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
+      <div id="customBtn" class="customGPlusSignIn">
+        <span class="icon"></span>
+        <span class="buttonText" onClick={onGoogleLogin}>
+          Iniciar sesión con Google
+        </span>
+      </div>
       <input
         id="register-email"
         type="email"

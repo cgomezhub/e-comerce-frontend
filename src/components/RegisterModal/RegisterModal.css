@@ -106,3 +106,42 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+#customBtn {
+  display: inline-block;
+  background: white;
+  color: #444;
+  width: 42%;
+  border-radius: 5px;
+  border: thin solid #888;
+  box-shadow: 1px 1px 1px grey;
+  white-space: nowrap;
+  margin: 0 auto 2%;
+}
+#customBtn:hover {
+  cursor: pointer;
+}
+span.label {
+  font-family: serif;
+  font-weight: normal;
+}
+span.icon {
+  background: url("../../images/G-Google.png") transparent 1px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+}
+span.buttonText {
+  display: inline-block;
+  width: 65%;
+  vertical-align: middle;
+  padding-left: 7px;
+  padding-right: 21px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
