@@ -75,9 +75,9 @@ function RegisterModal({
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <div id="customBtn" class="customGPlusSignIn">
-        <span class="icon"></span>
-        <span class="buttonText" onClick={onGoogleLogin}>
+      <div id="customBtn" className="customGPlusSignIn">
+        <span className="icon"></span>
+        <span className="buttonText" onClick={onGoogleLogin}>
           Iniciar sesión con Google
         </span>
       </div>

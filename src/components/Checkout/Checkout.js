@@ -158,7 +158,7 @@ export default function Checkout({
           <h2 className="checkout__container-title">Metodo de entrega</h2>
           <div className="checkout__container-radio">
             <label className="delivery-option">
-              <div class="delivery-option__description">
+              <div className="delivery-option__description">
                 <span className="item__name">Estandar</span>
                 <span className="item__description">4–10 dias laborales</span>
                 <span className="item__price">$5.00</span>
@@ -175,7 +175,7 @@ export default function Checkout({
               />
             </label>
             <label className="delivery-option">
-              <div class="delivery-option__description">
+              <div className="delivery-option__description">
                 <span className="item__name">Express</span>
                 <span className="item__description"> 2–5 dias laborales</span>
                 <span className="item__price">$15.00</span>

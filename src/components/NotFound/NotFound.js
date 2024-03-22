@@ -5,7 +5,7 @@ const NotFound = () => {
   return (
     <div className="not-found">
       <h1 className="not-found__title">No se ha encontrado nada</h1>
-      <i class="circle-preloader"></i>
+      <i className="circle-preloader"></i>
     </div>
   );
 };

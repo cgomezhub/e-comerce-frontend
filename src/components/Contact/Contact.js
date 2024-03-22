@@ -72,7 +72,7 @@ function Contact({ onSendEmail, isLoading }) {
           </div>
         </form>
       </div>
-      {isLoading && <i class="circle-preloader"></i>}
+      {isLoading && <i className="circle-preloader"></i>}
     </section>
   );
 }
