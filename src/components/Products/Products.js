@@ -5,9 +5,7 @@ import { SearchContext } from "../../contexts/SearchContext";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Products({
-  onSelectedProduct,
   onProductLike,
-  onProductLinkClick,
   onCartProduct,
   products,
   isLoading,

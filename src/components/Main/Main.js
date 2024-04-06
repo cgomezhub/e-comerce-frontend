@@ -5,8 +5,6 @@ import Products from "../Products/Products";
 
 import { SearchContext } from "../../contexts/SearchContext";
 
-// import { CurrentUserContext } from "../contexts/CurrentUserContext";
-
 function Main({
   products,
   onEditProfileClick,

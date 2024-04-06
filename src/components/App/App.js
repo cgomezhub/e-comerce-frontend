@@ -1,3 +1,4 @@
+// Code for the App component
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import firebase from "../../auth/firebase";
@@ -21,14 +22,16 @@ import NotFound from "../NotFound/NotFound";
 import ShoppingCart from "../ShoopingCart/ShoppingCart";
 import Favorites from "../Favorites/Favorites";
 import Footer from "../Footer/Footer";
+import Checkout from "../Checkout/Checkout";
+import OrderSummary from "../OrderSummary/OrderSummary";
 
 // apis
 import { api, apiAuth } from "../../utils/webStoreApi";
 import { apiMail } from "../../utils/MailSenderApi";
+import { apiFile } from "../../utils/webStoreApi";
 
+// Context
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import Checkout from "../Checkout/Checkout";
-import OrderSummary from "../OrderSummary/OrderSummary";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -37,6 +40,22 @@ function App() {
     const savedCartProducts = localStorage.getItem("cartProducts");
     return savedCartProducts ? JSON.parse(savedCartProducts) : [];
   });
+
+  const [favoriteProducts, setFavoriteProducts] = useState(() => {
+    const savedFavoriteProducts = localStorage.getItem("favoriteProducts");
+    return savedFavoriteProducts ? JSON.parse(savedFavoriteProducts) : [];
+  });
+
+  const [selectedNumbers, setSelectedNumbers] = useState(() => {
+    const savedNumbers = localStorage.getItem("selectedNumbers");
+    return savedNumbers ? JSON.parse(savedNumbers) : {};
+  });
+
+  useEffect(() => {
+    localStorage.setItem("selectedNumbers", JSON.stringify(selectedNumbers));
+    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+    localStorage.setItem("favoriteProducts", JSON.stringify(favoriteProducts));
+  }, [selectedNumbers, cartProducts, favoriteProducts]);
 
   const [form, setForm] = useState({
     fullName: "",
@@ -48,24 +67,6 @@ function App() {
     state: "",
     postalCode: "",
     phone: "",
-  });
-
-  const [selectedNumbers, setSelectedNumbers] = useState(() => {
-    const savedNumbers = localStorage.getItem("selectedNumbers");
-    return savedNumbers ? JSON.parse(savedNumbers) : {};
-  });
-
-  useEffect(() => {
-    localStorage.setItem("selectedNumbers", JSON.stringify(selectedNumbers));
-  }, [selectedNumbers]);
-
-  useEffect(() => {
-    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-  }, [cartProducts]);
-
-  const [favoriteProducts, setFavoriteProducts] = useState(() => {
-    const savedFavoriteProducts = localStorage.getItem("favoriteProducts");
-    return savedFavoriteProducts ? JSON.parse(savedFavoriteProducts) : [];
   });
 
   const [subtotal, setSubtotal] = useState(0);
@@ -98,10 +99,6 @@ function App() {
 
     setTotal(newTotal);
   }, [cartProducts, selectedNumbers, deliveryOption]);
-
-  useEffect(() => {
-    localStorage.setItem("favoriteProducts", JSON.stringify(favoriteProducts));
-  }, [favoriteProducts]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -299,13 +296,19 @@ function App() {
   // manejador del token para obtener  usuario
 
   const handleUser = () => {
+    // console.log(currentUser);
     api
       .getUser()
       .then((response) => {
         if (response) {
           // console.log(response);
           setEmail(response.data.email);
+          if (response.data.avatar.includes('uploads/')) {
+            response.data.avatar = `https://api.homehh.truckstore.ch/${response.data.avatar}`;
+          }
+          // console.log(response.data.avatar);
           setCurrentUser(response.data);
+          // console.log(currentUser);
         } else {
           // maneja errores de carga de datos
           console.log(response);
@@ -349,10 +352,35 @@ function App() {
       .userAvatarUpdate(userData)
       .then((updateAvatarData) => {
         setCurrentUser(updateAvatarData);
+        // console.log(updateAvatarData);
+        currentUser.avatar = updateAvatarData.avatar;
+        // console.log(currentUser);
         closeAllModals();
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+
+  const handleUpdateAvatarByFile = (file) => {
+    if (!file) {
+      console.error("file is undefined or does not have a name property");
+      return;
+    }
+    // console.log(file);
+    apiFile
+      .updateAvatarByFile(file)
+      .then((newAvatarData) => {
+        // console.log(newAvatarData);
+        // Asegúrate de que tu servidor esté configurado para servir archivos estáticos desde el directorio de 'uploads'
+        newAvatarData.avatar = `https://api.homehh.truckstore.ch/${newAvatarData.avatar}`;
+        // console.log(newAvatarData.avatar);
+        setCurrentUser(newAvatarData);
+        closeAllModals();
+      })
+      .catch((error) => {
+        console.log(error);
+        closeAllModals();
       });
   };
 
@@ -561,6 +589,7 @@ function App() {
           isOpen={isEditAvatarModalOpen}
           onClose={closeAllModals}
           onUpdateAvatar={handleUpdateAvatar}
+          onUpdateAvatarByFile={handleUpdateAvatarByFile}
         />
         <InfoTooltip
           isOpen={isInfoTooltipOpen}

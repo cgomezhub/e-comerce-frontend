@@ -1,3 +1,5 @@
+import axios from "axios";
+
 class Api {
   constructor(options) {
     this.address = options.address;
@@ -102,6 +104,39 @@ class Api {
         console.log(err);
       });
   }
+
+  updateAvatarByFile(file) {
+    if (!file) {
+      console.error("No file provided");
+      return;
+    }
+
+    console.log(file);
+    const formData = new FormData();
+    formData.append("avatar", file);
+    console.log(formData);
+
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
+    return axios({
+      url: `${this.address}/users/me/avatar/file`,
+      method: "PATCH",
+      headers: { ...this.getHeaders(), "Content-Type": "multipart/form-data" },
+      data: formData,
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.data;
+        }
+        throw new Error("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   getProductList() {
     return fetch(`${this.address}/products`, {
       headers: this.headers,
@@ -208,7 +243,7 @@ class Api {
 }
 
 export const api = new Api({
-  address: "http://localhost:3002",
+  address: "https://api.homehh.truckstore.ch",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
@@ -216,8 +251,16 @@ export const api = new Api({
 });
 
 export const apiAuth = new Api({
-  address: "http://localhost:3002",
+  address: "https://api.homehh.truckstore.ch",
   headers: {
     "Content-Type": "application/json",
+  },
+});
+
+export const apiFile = new Api({
+  address: "https://api.homehh.truckstore.ch",
+  headers: {
+    authorization: `Bearer ${localStorage.getItem("token")}`,
+    "Content-Type": "multipart/form-data",
   },
 });
